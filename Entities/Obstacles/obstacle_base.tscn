@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://26mjeu8qwygp"]
+
+[ext_resource type="Script" uid="uid://ddly4cx2n2irv" path="res://Entities/Obstacles/obstacle.gd" id="1_n2wgm"]
+
+[node name="Obstacle" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_n2wgm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5625, 0.546875)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

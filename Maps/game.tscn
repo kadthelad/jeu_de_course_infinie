@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuoul13wm4xk8"]
+
+[ext_resource type="Script" uid="uid://qjliol4yaee2" path="res://Maps/game.gd" id="1_6et8r"]
+[ext_resource type="Texture2D" uid="uid://irtoxg8xqvgp" path="res://Textures/icon.svg" id="1_n8bjf"]
+[ext_resource type="PackedScene" uid="uid://dy2w4qvum8r1d" path="res://Components/game_play_component.tscn" id="1_y2ywj"]
+[ext_resource type="PackedScene" uid="uid://bat1e3mr8hu7d" path="res://Entities/Player/Player.tscn" id="3_1ldu1"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_6et8r")
+
+[node name="GamePlayComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_y2ywj")]
+player = NodePath("../Player")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(0, -98.50001)
+scale = Vector2(9.5625, 3.7109375)
+texture = ExtResource("1_n8bjf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ground" type="Sprite2D" parent="."]
+modulate = Color(0.45490196, 0.45490196, 0.45490196, 1)
+position = Vector2(-1.5258789e-05, -44)
+scale = Vector2(9.015626, 2.1875002)
+texture = ExtResource("1_n8bjf")
+
+[node name="Line1" type="Marker2D" parent="Ground"]
+position = Vector2(0, -40)
+gizmo_extents = 55.9
+
+[node name="Line2" type="Marker2D" parent="Ground"]
+gizmo_extents = 55.9
+
+[node name="Line3" type="Marker2D" parent="Ground"]
+position = Vector2(0, 40)
+gizmo_extents = 55.9
+
+[node name="Player" parent="." node_paths=PackedStringArray("ground") instance=ExtResource("3_1ldu1")]
+position = Vector2(0, -45)
+ground = NodePath("../Ground")

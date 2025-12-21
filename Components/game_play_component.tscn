@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy2w4qvum8r1d"]
+
+[ext_resource type="Script" uid="uid://ddxs8sfhtwqci" path="res://Components/game_play_component.gd" id="1_q430m"]
+
+[node name="GamePlayComponent" type="Node"]
+script = ExtResource("1_q430m")
+
+[node name="ObstacleSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[connection signal="timeout" from="ObstacleSpawnTimer" to="." method="_on_obstacle_spawn_timer_timeout"]
