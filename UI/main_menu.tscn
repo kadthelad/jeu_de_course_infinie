@@ -78,4 +78,5 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_d8nwk")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_4cwpn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f40uw")
 
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
