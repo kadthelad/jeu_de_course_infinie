@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://cre42jvcxga56"]
 
 [ext_resource type="PackedScene" uid="uid://26mjeu8qwygp" path="res://Entities/Obstacles/obstacle_base.tscn" id="1_axw7w"]
-[ext_resource type="Texture2D" uid="uid://irtoxg8xqvgp" path="res://Textures/icon.svg" id="2_bajnt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sba08"]
-size = Vector2(74, 25)
+[sub_resource type="QuadMesh" id="QuadMesh_axw7w"]
+size = Vector2(1, 0.275)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axw7w"]
+size = Vector3(2.522461, 0.70047, 1)
 
 [node name="Barrier" instance=ExtResource("1_axw7w")]
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -22.5)
-scale = Vector2(0.5625, 0.1953125)
-texture = ExtResource("2_bajnt")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2561331, 0)
+mesh = SubResource("QuadMesh_axw7w")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -22.5)
-shape = SubResource("RectangleShape2D_sba08")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2716773, 0)
+shape = SubResource("BoxShape3D_axw7w")

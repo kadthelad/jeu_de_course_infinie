@@ -17,10 +17,10 @@ func _ready() -> void:
 func _on_obstacle_spawn_timer_timeout() -> void:
 	if player.lines_array == null:
 		return
-	var random_line: Marker2D = player.lines_array.pick_random()
-	var instanciated_obstacle: Node2D = GameManager.small_obstacles.pick_random().instantiate()
-	instanciated_obstacle.global_position = random_line.global_position + Vector2(400, 0)
+	var random_line: Marker3D = player.lines_array.pick_random()
+	var instanciated_obstacle: Node3D = GameManager.small_obstacles.pick_random().instantiate()
 	add_child(instanciated_obstacle)
+	instanciated_obstacle.global_position = random_line.global_position + Vector3(6, 0, 0)
 
 func _on_game_ended() -> void:
 	%ObstacleSpawnTimer.stop()

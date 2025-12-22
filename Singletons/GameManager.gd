@@ -12,7 +12,7 @@ var is_game_on := false: ## This tracks if the game is started or not
 		else:
 			_game_ended.emit()
 
-var game_speed := 200.0:
+var game_speed := 500.0:
 	set(value):
 		_game_speed_changed.emit(value)
 

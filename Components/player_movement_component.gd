@@ -6,8 +6,10 @@ extends Node
 ## Will move to the up direction by default.
 ## First parameter can be set to false to make it go on a lower line.
 func move_line(direction_up:=true) -> void:
+	if player.ground == null:
+		return
 	var direction := 1 if direction_up else -1
-	var cast = player.top_shape_cast_2d if direction_up else player.bottom_shape_cast_2d
+	var cast = player.top_shape_cast_3d if direction_up else player.bottom_shape_cast_3d
 	
 	# Attempt to change lines and do if possible
 	if cast.is_colliding():

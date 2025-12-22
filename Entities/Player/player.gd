@@ -1,26 +1,27 @@
 class_name Player
-extends Node2D
+extends Node3D
 
 # Constants
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY := 6.0
+const WEIGHT := 1.25
 
 # Exports
-@export var ground: Node2D ## ground is supposed to have "Line1", "Line2", ... as children.
+@export var ground: Node3D ## ground is supposed to have "Line1", "Line2", ... as children.
 
 # Onready
 @onready var player_movement_component: Node = $PlayerMovementComponent
 
-@onready var character_body_2d: CharacterBody2D = $CharacterBody2D
-@onready var standing_collison_shape_2d: CollisionShape2D = %StandingCollisonShape2D
-@onready var sliding_collison_shape_2d: CollisionShape2D = %SlidingCollisonShape2D
+@onready var character_body_3d: CharacterBody3D = $CharacterBody3D
+@onready var standing_collison_shape_3d: CollisionShape3D = %StandingCollisonShape3D
+@onready var sliding_collison_shape_3d: CollisionShape3D = %SlidingCollisonShape3D
 @onready var sliding_timer: Timer = %SlidingTimer
-@onready var top_shape_cast_2d: ShapeCast2D = %TopShapeCast2D
-@onready var bottom_shape_cast_2d: ShapeCast2D = %BottomShapeCast2D
+@onready var top_shape_cast_3d: ShapeCast3D = %TopShapeCast3D
+@onready var bottom_shape_cast_3d: ShapeCast3D = %BottomShapeCast3D
 
 # Variables
-var lines_array: Array[Marker2D] = []
+var lines_array: Array[Marker3D] = []
 var current_line_index: int
-var current_line_position: Vector2
+var current_line_position: Vector3
 
 var is_on_ground := false
 var is_jumping := false
@@ -60,26 +61,27 @@ func is_on_line() -> bool:
 	if current_line_position == null:
 		return true
 	
+	# If only the player is already on ground, return true
 	if is_on_ground:
 		return is_on_ground
-	
-	if character_body_2d.global_position.y - global_position.y <= 1:
+	# Else, check if the player is on the line
+	if character_body_3d.global_position.y - global_position.y > 0.01:
 		return false
 	return true
 
 func _physics_process(delta: float) -> void:
-	character_body_2d.global_position.x = 0
+	character_body_3d.global_position.x = 0
 	# Add the gravity.
 	if not is_on_line():
-		character_body_2d.velocity += character_body_2d.get_gravity() * delta
+		character_body_3d.velocity += character_body_3d.get_gravity() * delta * WEIGHT
 	else:
-		character_body_2d.velocity = Vector2.ZERO
+		character_body_3d.velocity = Vector3.ZERO
 	
 	# Handle jump.
 	if is_jumping and is_on_line():
-		character_body_2d.velocity.y = JUMP_VELOCITY
+		character_body_3d.velocity.y = JUMP_VELOCITY
 	is_jumping = false
-	character_body_2d.move_and_slide()
+	character_body_3d.move_and_slide()
 
 # Other conections
 func _on_game_started() -> void:
@@ -104,13 +106,13 @@ func _on_player_input_component_slide() -> void:
 	is_sliding = true
 	
 	# Setup collisions
-	standing_collison_shape_2d.set_deferred("disabled", is_sliding)
-	sliding_collison_shape_2d.set_deferred("disabled", !is_sliding)
+	standing_collison_shape_3d.set_deferred("disabled", is_sliding)
+	sliding_collison_shape_3d.set_deferred("disabled", !is_sliding)
 	sliding_timer.start()
 
 func _on_sliding_timer_timeout() -> void:
 	is_sliding = false
 	
 	# Setup collisions
-	standing_collison_shape_2d.set_deferred("disabled", is_sliding)
-	sliding_collison_shape_2d.set_deferred("disabled", !is_sliding)
+	standing_collison_shape_3d.set_deferred("disabled", is_sliding)
+	sliding_collison_shape_3d.set_deferred("disabled", !is_sliding)
