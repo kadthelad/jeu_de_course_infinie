@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://irtoxg8xqvgp" path="res://Textures/icon.svg" id="1_mp46i"]
 
 [node name="GameUI" type="CanvasLayer"]
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

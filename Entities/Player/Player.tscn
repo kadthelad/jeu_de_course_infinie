@@ -1,46 +1,148 @@
-[gd_scene load_steps=13 format=3 uid="uid://bat1e3mr8hu7d"]
+[gd_scene load_steps=22 format=3 uid="uid://bat1e3mr8hu7d"]
 
 [ext_resource type="Script" uid="uid://cofud3kmib42k" path="res://Entities/Player/player.gd" id="1_e5kic"]
 [ext_resource type="Script" uid="uid://cux7vux7624gr" path="res://Components/player_input_component.gd" id="2_1des2"]
 [ext_resource type="Script" uid="uid://c8gt6x7os5w62" path="res://Components/player_hitbox_component.gd" id="3_an6q6"]
 [ext_resource type="Texture2D" uid="uid://dwou3bige3764" path="res://Textures/CharacterSheets/Character1/Character1_idle.png" id="3_vweq0"]
 [ext_resource type="Script" uid="uid://w8bmhqdtds1s" path="res://Components/player_movement_component.gd" id="4_an6q6"]
+[ext_resource type="Texture2D" uid="uid://irtoxg8xqvgp" path="res://Textures/icon.svg" id="6_t38ms"]
+[ext_resource type="Shader" uid="uid://degnd5hmi0cnj" path="res://Shaders/SpriteSheetAnimation.gdshader" id="7_hj1c0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1des2"]
-atlas = ExtResource("3_vweq0")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="QuadMesh" id="QuadMesh_x44r4"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x44r4"]
+render_priority = 0
+shader = ExtResource("7_hj1c0")
+shader_parameter/albedo_texture = ExtResource("3_vweq0")
+shader_parameter/columns = 2
+shader_parameter/rows = 1
+shader_parameter/frame = 0
+
+[sub_resource type="Animation" id="Animation_061yh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_x44r4")]
+}
+
+[sub_resource type="Shader" id="Shader_hj1c0"]
+code = "shader_type spatial;
+// cull_disabled allows seeing the sprite from behind
+// depth_prepass_alpha helps with transparency sorting
+render_mode blend_mix, depth_draw_always, cull_disabled;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void vertex() {
+	// Billboard logic: Always face camera
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+		vec4(normalize(MODEL_MATRIX[0].xyz), 0.0),
+		vec4(normalize(MODEL_MATRIX[1].xyz), 0.0),
+		vec4(normalize(MODEL_MATRIX[2].xyz), 0.0),
+		MODEL_MATRIX[3]
+	);
+}
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_761t5"]
+render_priority = 0
+shader = SubResource("Shader_hj1c0")
+shader_parameter/albedo_texture = ExtResource("3_vweq0")
+shader_parameter/columns = 2
+shader_parameter/rows = 1
+shader_parameter/frame = 1
+
+[sub_resource type="Animation" id="Animation_5m37j"]
+resource_name = "idle_shader"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_x44r4"), SubResource("ShaderMaterial_761t5")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e34i1"]
+_data = {
+&"RESET": SubResource("Animation_061yh"),
+&"idle_shader": SubResource("Animation_5m37j")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_an6q6"]
 atlas = ExtResource("3_vweq0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t38ms"]
+atlas = ExtResource("3_vweq0")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_t38ms"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_hj1c0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1des2")
+"texture": SubResource("AtlasTexture_an6q6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_an6q6")
+"texture": SubResource("AtlasTexture_t38ms")
 }],
 "loop": true,
 "name": &"default",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_t38ms")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vweq0"]
-size = Vector2(3, 20)
+[sub_resource type="BoxShape3D" id="BoxShape3D_an6q6"]
+size = Vector3(0.12084961, 1.4104004, 0.1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1des2"]
-size = Vector2(8, 6)
+[sub_resource type="BoxShape3D" id="BoxShape3D_t38ms"]
+size = Vector3(0.7520415, 0.46665627, 0.1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_an6q6"]
-size = Vector2(12, 2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hj1c0"]
+size = Vector3(0.69140625, 0.023, 0.1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t38ms"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_x44r4"]
+size = Vector3(2, 1.1, 0.675)
 
-[node name="Player" type="Node2D"]
-scale = Vector2(2, 2)
+[node name="Player" type="Node3D"]
 script = ExtResource("1_e5kic")
 
 [node name="PlayerInputComponent" type="Node" parent="."]
@@ -56,49 +158,62 @@ script = ExtResource("4_an6q6")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = SubResource("SpriteFrames_t38ms")
-frame_progress = 0.8333043
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("QuadMesh_x44r4")
+surface_material_override/0 = SubResource("ShaderMaterial_x44r4")
 
-[node name="Hitbox" type="Area2D" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_e34i1")
+}
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
+visible = false
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_hj1c0")
+
+[node name="Hitbox" type="Area3D" parent="CharacterBody3D"]
 collision_mask = 2
 
-[node name="StandingCollisonShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hitbox"]
+[node name="StandingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox"]
 unique_name_in_owner = true
-position = Vector2(7.5, 0)
-shape = SubResource("RectangleShape2D_vweq0")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.015, 0)
+shape = SubResource("BoxShape3D_an6q6")
 debug_color = Color(0.65823203, 0.27419496, 0.30283663, 0.41960785)
 
-[node name="SlidingCollisonShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hitbox"]
+[node name="SlidingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox"]
 unique_name_in_owner = true
-position = Vector2(10, 11)
-shape = SubResource("RectangleShape2D_1des2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.914531, -0.76918787, 0)
+shape = SubResource("BoxShape3D_t38ms")
 disabled = true
 debug_color = Color(0.65823203, 0.27419496, 0.30283663, 0.41960785)
 
-[node name="GroundDetector" type="Area2D" parent="CharacterBody2D"]
+[node name="GroundDetector" type="Area3D" parent="CharacterBody3D"]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/GroundDetector"]
-position = Vector2(0, 15)
-shape = SubResource("RectangleShape2D_an6q6")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/GroundDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2888184e-05, -1.0061765, 0)
+shape = SubResource("BoxShape3D_hj1c0")
 
-[node name="TopShapeCast2D" type="ShapeCast2D" parent="CharacterBody2D"]
+[node name="LineDetectors" type="Node3D" parent="CharacterBody3D"]
+
+[node name="TopShapeCast3D" type="ShapeCast3D" parent="CharacterBody3D/LineDetectors"]
 unique_name_in_owner = true
-position = Vector2(0, -46.5)
-shape = SubResource("RectangleShape2D_t38ms")
-target_position = Vector2(32, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.46)
+shape = SubResource("BoxShape3D_x44r4")
+target_position = Vector3(1, 0, 0)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="BottomShapeCast2D" type="ShapeCast2D" parent="CharacterBody2D"]
+[node name="BottomShapeCast3D" type="ShapeCast3D" parent="CharacterBody3D/LineDetectors"]
 unique_name_in_owner = true
-position = Vector2(0, 46)
-shape = SubResource("RectangleShape2D_t38ms")
-target_position = Vector2(32, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.46)
+shape = SubResource("BoxShape3D_x44r4")
+target_position = Vector3(1, 0, 0)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
@@ -108,6 +223,6 @@ collide_with_bodies = false
 [connection signal="move_upper_line" from="PlayerInputComponent" to="." method="_on_player_input_component_move_upper_line"]
 [connection signal="slide" from="PlayerInputComponent" to="." method="_on_player_input_component_slide"]
 [connection signal="timeout" from="SlidingTimer" to="." method="_on_sliding_timer_timeout"]
-[connection signal="area_entered" from="CharacterBody2D/Hitbox" to="PlayerHitboxComponent" method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="CharacterBody2D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_entered"]
-[connection signal="area_exited" from="CharacterBody2D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_exited"]
+[connection signal="area_entered" from="CharacterBody3D/Hitbox" to="PlayerHitboxComponent" method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="CharacterBody3D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_entered"]
+[connection signal="area_exited" from="CharacterBody3D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_exited"]
