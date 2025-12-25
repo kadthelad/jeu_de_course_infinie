@@ -5,16 +5,16 @@ extends Node
 
 # Hitbox detection (lose the game)
 func _on_hitbox_area_entered(area: Area3D) -> void:
-	if area is Obstacle:
+	if area.is_in_group("Obstacles"):
 		GameManager.game_speed = 0
 		GameManager.is_game_on = false
 		print("Game Over!")
 
 # Detect ground (step on obstacles)
 func _on_ground_detector_area_entered(area: Area3D) -> void:
-	if area is Obstacle:
+	if area.is_in_group("Obstacles"):
 		player.is_on_ground = true
 
 func _on_ground_detector_area_exited(area: Area3D) -> void:
-	if area is Obstacle:
+	if area.is_in_group("Obstacles"):
 		player.is_on_ground = false

@@ -44,6 +44,10 @@ folder_colors={
 "res://Utils/": "purple"
 }
 
+[global_group]
+
+Obstacles="Group for obstacles, it will trigger the game over if the player's front collides with it!"
+
 [input]
 
 game_up={

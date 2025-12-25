@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://bat1e3mr8hu7d"]
+[gd_scene load_steps=19 format=3 uid="uid://bat1e3mr8hu7d"]
 
 [ext_resource type="Script" uid="uid://cofud3kmib42k" path="res://Entities/Player/player.gd" id="1_e5kic"]
-[ext_resource type="Script" uid="uid://cux7vux7624gr" path="res://Components/player_input_component.gd" id="2_1des2"]
-[ext_resource type="Script" uid="uid://c8gt6x7os5w62" path="res://Components/player_hitbox_component.gd" id="3_an6q6"]
+[ext_resource type="Script" uid="uid://cux7vux7624gr" path="res://Components/PlayerComponents/player_input_component.gd" id="2_1des2"]
+[ext_resource type="Script" uid="uid://c8gt6x7os5w62" path="res://Components/PlayerComponents/player_hitbox_component.gd" id="3_an6q6"]
 [ext_resource type="Texture2D" uid="uid://dwou3bige3764" path="res://Textures/CharacterSheets/Character1/Character1_idle.png" id="3_vweq0"]
-[ext_resource type="Script" uid="uid://w8bmhqdtds1s" path="res://Components/player_movement_component.gd" id="4_an6q6"]
-[ext_resource type="Texture2D" uid="uid://irtoxg8xqvgp" path="res://Textures/icon.svg" id="6_t38ms"]
+[ext_resource type="Script" uid="uid://w8bmhqdtds1s" path="res://Components/PlayerComponents/player_movement_component.gd" id="4_an6q6"]
 [ext_resource type="Shader" uid="uid://degnd5hmi0cnj" path="res://Shaders/SpriteSheetAnimation.gdshader" id="7_hj1c0"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_x44r4"]
@@ -34,45 +33,9 @@ tracks/0/keys = {
 "values": [SubResource("ShaderMaterial_x44r4")]
 }
 
-[sub_resource type="Shader" id="Shader_hj1c0"]
-code = "shader_type spatial;
-// cull_disabled allows seeing the sprite from behind
-// depth_prepass_alpha helps with transparency sorting
-render_mode blend_mix, depth_draw_always, cull_disabled;
-
-uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
-uniform int columns = 1;
-uniform int rows = 1;
-uniform int frame = 0;
-
-void vertex() {
-	// Billboard logic: Always face camera
-	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
-		vec4(normalize(MODEL_MATRIX[0].xyz), 0.0),
-		vec4(normalize(MODEL_MATRIX[1].xyz), 0.0),
-		vec4(normalize(MODEL_MATRIX[2].xyz), 0.0),
-		MODEL_MATRIX[3]
-	);
-}
-
-void fragment() {
-	// UV Animation Logic
-	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
-	vec2 frame_uv = vec2(
-		float(frame % columns) * frame_size.x,
-		float(frame / columns) * frame_size.y
-	);
-	
-	vec2 final_uv = frame_uv + (UV * frame_size);
-	vec4 tex = texture(albedo_texture, final_uv);
-	
-	ALBEDO = tex.rgb;
-	ALPHA = tex.a;
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_761t5"]
 render_priority = 0
-shader = SubResource("Shader_hj1c0")
+shader = ExtResource("7_hj1c0")
 shader_parameter/albedo_texture = ExtResource("3_vweq0")
 shader_parameter/columns = 2
 shader_parameter/rows = 1
@@ -100,38 +63,8 @@ _data = {
 &"idle_shader": SubResource("Animation_5m37j")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_an6q6"]
-atlas = ExtResource("3_vweq0")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t38ms"]
-atlas = ExtResource("3_vweq0")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hj1c0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_an6q6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t38ms")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_t38ms")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
-}]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_an6q6"]
-size = Vector3(0.12084961, 1.4104004, 0.1)
+size = Vector3(0.12084961, 1.272583, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t38ms"]
 size = Vector3(0.7520415, 0.46665627, 0.1)
@@ -141,6 +74,22 @@ size = Vector3(0.69140625, 0.023, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x44r4"]
 size = Vector3(2, 1.1, 0.675)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hj1c0"]
+emission_shape_scale = Vector3(0.365, 0.245, 0.14)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(-1, 0, 0)
+spread = 20.0
+initial_velocity_min = 5.0
+initial_velocity_max = 6.0
+scale_min = 0.099999994
+scale_max = 0.099999994
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_761t5"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_e5kic")
@@ -156,6 +105,7 @@ script = ExtResource("4_an6q6")
 
 [node name="SlidingTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 1.5
 one_shot = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
@@ -169,24 +119,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_e34i1")
 }
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
-visible = false
-billboard = 1
-texture_filter = 0
-sprite_frames = SubResource("SpriteFrames_hj1c0")
-
 [node name="Hitbox" type="Area3D" parent="CharacterBody3D"]
 collision_mask = 2
 
 [node name="StandingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.015, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41418588, 0.08390869, 0)
 shape = SubResource("BoxShape3D_an6q6")
 debug_color = Color(0.65823203, 0.27419496, 0.30283663, 0.41960785)
 
 [node name="SlidingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.914531, -0.76918787, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72871685, -0.76918787, 0)
 shape = SubResource("BoxShape3D_t38ms")
 disabled = true
 debug_color = Color(0.65823203, 0.27419496, 0.30283663, 0.41960785)
@@ -199,6 +143,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2888184e-05, -1.0061765, 0
 shape = SubResource("BoxShape3D_hj1c0")
 
 [node name="LineDetectors" type="Node3D" parent="CharacterBody3D"]
+visible = false
 
 [node name="TopShapeCast3D" type="ShapeCast3D" parent="CharacterBody3D/LineDetectors"]
 unique_name_in_owner = true
@@ -217,6 +162,18 @@ target_position = Vector3(1, 0, 0)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="RunningGPUParticles3D" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+emitting = false
+trail_lifetime = 2.36
+process_material = SubResource("ParticleProcessMaterial_hj1c0")
+draw_pass_1 = SubResource("QuadMesh_761t5")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="RunningGPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.62890625, -0.61690104, 0)
+size = Vector3(3.2578125, 1.0494385, 2)
 
 [connection signal="jump" from="PlayerInputComponent" to="." method="_on_player_input_component_jump"]
 [connection signal="move_lower_line" from="PlayerInputComponent" to="." method="_on_player_input_component_move_lower_line"]

@@ -2,8 +2,9 @@ class_name Player
 extends Node3D
 
 # Constants
-const JUMP_VELOCITY := 6.0
-const WEIGHT := 1.25
+const JUMP_VELOCITY := 8.0
+const WEIGHT := 1.75
+const PLAYER_FEET_POSITION := Vector3(0, -1, 0)
 
 # Exports
 @export var ground: Node3D ## ground is supposed to have "Line1", "Line2", ... as children.
@@ -17,6 +18,7 @@ const WEIGHT := 1.25
 @onready var sliding_timer: Timer = %SlidingTimer
 @onready var top_shape_cast_3d: ShapeCast3D = %TopShapeCast3D
 @onready var bottom_shape_cast_3d: ShapeCast3D = %BottomShapeCast3D
+@onready var running_gpu_particles_3d: GPUParticles3D = %RunningGPUParticles3D
 
 # Variables
 var lines_array: Array[Marker3D] = []
@@ -63,7 +65,9 @@ func is_on_line() -> bool:
 	
 	# If only the player is already on ground, return true
 	if is_on_ground:
+		running_gpu_particles_3d.global_position = character_body_3d.global_position + PLAYER_FEET_POSITION
 		return is_on_ground
+	running_gpu_particles_3d.position = PLAYER_FEET_POSITION
 	# Else, check if the player is on the line
 	if character_body_3d.global_position.y - global_position.y > 0.01:
 		return false
@@ -74,8 +78,10 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_line():
 		character_body_3d.velocity += character_body_3d.get_gravity() * delta * WEIGHT
+		running_gpu_particles_3d.emitting = false
 	else:
 		character_body_3d.velocity = Vector3.ZERO
+		running_gpu_particles_3d.emitting = true
 	
 	# Handle jump.
 	if is_jumping and is_on_line():
