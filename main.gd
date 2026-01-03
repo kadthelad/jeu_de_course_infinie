@@ -8,12 +8,13 @@ const GAME_SCENE := preload("res://Maps/game.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	load_game()
 	load_main_menu()
+	load_game()
 	
 	# Tell every node that the game is not on
 	GameManager.is_game_on = false
 	GameManager._game_started.connect(_on_game_started)
+	GameManager._game_ended.connect(_on_game_ended)
 
 
 func load_main_menu() -> void:
@@ -27,3 +28,9 @@ func load_game() -> void:
 func _on_game_started() -> void:
 	var game_ui_instance := GAME_UI.instantiate()
 	add_child(game_ui_instance)
+
+func _on_game_ended() -> void:
+	for child in get_children():
+		child.queue_free()
+	load_main_menu()
+	load_game()

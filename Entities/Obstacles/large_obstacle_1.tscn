@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://f8pf54njlogk"]
+[gd_scene load_steps=5 format=3 uid="uid://f8pf54njlogk"]
 
 [ext_resource type="PackedScene" uid="uid://da28udguq2q2l" path="res://Components/obstacle_component.tscn" id="1_hrvhg"]
 [ext_resource type="PackedScene" uid="uid://cre42jvcxga56" path="res://Entities/Obstacles/Prefabs/barrier.tscn" id="2_aqec6"]
 [ext_resource type="PackedScene" uid="uid://b0ygg174lqg3q" path="res://Entities/Obstacles/Prefabs/crate.tscn" id="3_dbnxj"]
+[ext_resource type="PackedScene" uid="uid://dmgavua0ix2yr" path="res://Entities/Collectibles/coin.tscn" id="4_aqec6"]
 
 [node name="LargeObstacle1" type="Node3D"]
 
-[node name="ObstacleComponent" parent="." node_paths=PackedStringArray("obstacles") instance=ExtResource("1_hrvhg")]
-obstacles = NodePath("../Obstacles")
+[node name="ObstacleComponent" parent="." instance=ExtResource("1_hrvhg")]
 
 [node name="Obstacles" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -16,3 +16,44 @@ unique_name_in_owner = true
 
 [node name="Crate" parent="Obstacles" instance=ExtResource("3_dbnxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Coins" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Line1" type="Node3D" parent="Coins"]
+
+[node name="Coin" parent="Coins/Line1" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
+
+[node name="Coin2" parent="Coins/Line1" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
+
+[node name="Coin3" parent="Coins/Line1" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
+
+[node name="Coin4" parent="Coins/Line1" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
+
+[node name="Coin5" parent="Coins/Line1" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 0)
+
+[node name="Coin6" parent="Coins/Line1" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
+
+[node name="Coin7" parent="Coins/Line1" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Line2" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Coin2" parent="Coins/Line2" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
+
+[node name="Coin3" parent="Coins/Line2" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
+
+[node name="Coin4" parent="Coins/Line2" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
+
+[node name="Coin5" parent="Coins/Line2" instance=ExtResource("4_aqec6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 0)

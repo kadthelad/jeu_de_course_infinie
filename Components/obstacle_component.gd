@@ -1,17 +1,19 @@
 class_name Obstacle
 extends Node
 
-@export var obstacles: Node3D = null ## Contains all of the obstacles
+@onready var obstacles: Node3D = %Obstacles ## Contains all of the obstacles
+@onready var coins: Node3D = %Coins ## Contains all of the coins
 
 @onready var game_speed := GameManager.game_speed
 @onready var parent := get_parent() ## The obstacle node
 
+var visible_on_screen_notifier := VisibleOnScreenNotifier3D.new()
+
 func _ready() -> void:
 	# Add the obstacle deletion logic
-	var visible_on_screen_notifier := VisibleOnScreenNotifier3D.new()
-	visible_on_screen_notifier.screen_exited.connect(_on_screen_exited)
+	visible_on_screen_notifier.screen_entered.connect(_on_screen_entered)
 	
-	# Spawn the obstacles on the lines, if possible
+	# Spawn the obstacles and coins on the lines, if possible
 	spawn()
 	parent.add_child.call_deferred(visible_on_screen_notifier)
 	GameManager._game_speed_changed.connect(_on_game_speed_changed)
@@ -24,12 +26,16 @@ func _process(delta: float) -> void:
 func _on_game_speed_changed(new_speed) -> void:
 	game_speed = new_speed
 
+func _on_screen_entered() -> void:
+	visible_on_screen_notifier.screen_exited.connect(_on_screen_exited)
+
 func _on_screen_exited() -> void:
 	destroy()
 
 ## This verifies and spawns all the obstacles on the lines at the right position for each obstacle.
 ## [br]
 ## The obstacle will be deleted if it can't spawn!
+## This also handles the coins spawning
 func spawn() -> void:
 	var lines_used := 1
 	if obstacles != null: # this variable is only valid for large obstacles
@@ -62,6 +68,25 @@ func spawn() -> void:
 		for obstacle : Node3D in obstacles.get_children():
 			obstacle.global_position.z = lines_array[i].position.y
 			i += 1
+		if coins != null:
+			i = lines_array.find(selected_line)
+			for coin : Node3D in coins.get_children():
+				coin.global_position.z = lines_array[i].position.y
+				i += 1
+			# Randomize the apparition of coins, can have either:
+			# - One line of coins
+			# - No coins at all
+			# - All lines of coins
+			var random_value := randf()
+			if random_value < 0.33: # One line of coins
+				var kept_coins = coins.get_children().pick_random()
+				for coin : Node3D in coins.get_children():
+					if coin != kept_coins:
+						coin.queue_free()
+			elif random_value > 0.33 and random_value < 0.66: # No coins at all
+				for coin : Node3D in coins.get_children():
+					coin.queue_free()
+			# Else, keep all of the coins
 	else:
 		parent.global_position.y = lines_array[i].position.y
 

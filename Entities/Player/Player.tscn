@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bat1e3mr8hu7d"]
+[gd_scene load_steps=20 format=3 uid="uid://bat1e3mr8hu7d"]
 
 [ext_resource type="Script" uid="uid://cofud3kmib42k" path="res://Entities/Player/player.gd" id="1_e5kic"]
 [ext_resource type="Script" uid="uid://cux7vux7624gr" path="res://Components/PlayerComponents/player_input_component.gd" id="2_1des2"]
@@ -72,6 +72,10 @@ size = Vector3(0.7520415, 0.46665627, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hj1c0"]
 size = Vector3(0.69140625, 0.023, 0.1)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t38ms"]
+radius = 0.75878906
+height = 2.4550781
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_x44r4"]
 size = Vector3(2, 1.1, 0.675)
 
@@ -142,6 +146,13 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2888184e-05, -1.0061765, 0)
 shape = SubResource("BoxShape3D_hj1c0")
 
+[node name="InteractBox" type="Area3D" parent="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractBox"]
+shape = SubResource("CapsuleShape3D_t38ms")
+
 [node name="LineDetectors" type="Node3D" parent="CharacterBody3D"]
 visible = false
 
@@ -183,3 +194,4 @@ size = Vector3(3.2578125, 1.0494385, 2)
 [connection signal="area_entered" from="CharacterBody3D/Hitbox" to="PlayerHitboxComponent" method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody3D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_entered"]
 [connection signal="area_exited" from="CharacterBody3D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_exited"]
+[connection signal="area_entered" from="CharacterBody3D/InteractBox" to="PlayerHitboxComponent" method="_on_interact_box_area_entered"]

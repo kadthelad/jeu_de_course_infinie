@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://db24mnjjcyhxp"]
+[gd_scene load_steps=4 format=3 uid="uid://db24mnjjcyhxp"]
 
-[ext_resource type="Texture2D" uid="uid://irtoxg8xqvgp" path="res://Textures/icon.svg" id="1_mp46i"]
+[ext_resource type="Script" uid="uid://cpq3p7yrikoe5" path="res://UI/game_ui.gd" id="1_mp46i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gijn"]
+bg_color = Color(0.23031491, 0.23031494, 0.23031485, 1)
+border_width_left = 15
+border_width_right = 60
+border_color = Color(0.22670749, 0.22670752, 0.22670731, 0)
+border_blend = true
+corner_radius_top_right = 255
+
+[sub_resource type="Theme" id="Theme_mp46i"]
+Label/styles/normal = SubResource("StyleBoxFlat_3gijn")
 
 [node name="GameUI" type="CanvasLayer"]
-visible = false
+script = ExtResource("1_mp46i")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -12,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_mp46i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -28,49 +40,39 @@ theme_override_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.8
-
-[node name="BG" type="NinePatchRect" parent="Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("1_mp46i")
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/BG"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 50
 
-[node name="GameInfoContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/BG/MarginContainer"]
+[node name="GameInfoContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Stats" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/BG/MarginContainer/GameInfoContainer"]
+[node name="Stats" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CoinLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/BG/MarginContainer/GameInfoContainer/Stats"]
+[node name="CoinLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Coins: 0"
 
-[node name="SpeedLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/BG/MarginContainer/GameInfoContainer/Stats"]
+[node name="SpeedLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Speed: 0"
 
-[node name="Info1" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/BG/MarginContainer/GameInfoContainer"]
+[node name="Info1" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Info2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/BG/MarginContainer/GameInfoContainer"]
+[node name="Info2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.8

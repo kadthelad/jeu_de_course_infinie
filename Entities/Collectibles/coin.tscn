@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmgavua0ix2yr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23e72"]
+albedo_color = Color(0.73392856, 0.74649566, 0.42200473, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_23e72"]
+material = SubResource("StandardMaterial3D_23e72")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l0wg0"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Coin" type="Area3D" groups=["Coin", "Collectibles"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_23e72")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_l0wg0")

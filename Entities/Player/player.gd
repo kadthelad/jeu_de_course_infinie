@@ -94,7 +94,7 @@ func _on_game_started() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_game_ended() -> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
+	call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED) # Deferred to remove an error when game over
 
 # Player Input Component
 func _on_player_input_component_move_upper_line() -> void:

@@ -9,4 +9,8 @@ script = ExtResource("1_q430m")
 unique_name_in_owner = true
 wait_time = 3.0
 
+[node name="GameSpeedUpTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="ObstacleSpawnTimer" to="." method="_on_obstacle_spawn_timer_timeout"]
+[connection signal="timeout" from="GameSpeedUpTimer" to="." method="_on_game_speed_up_timer_timeout"]

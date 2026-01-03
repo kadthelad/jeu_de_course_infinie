@@ -47,6 +47,7 @@ folder_colors={
 [global_group]
 
 Obstacles="Group for obstacles, it will trigger the game over if the player's front collides with it!"
+Collectibles="A groupe of collectibles, can be coins or other stuff you can get in game."
 
 [input]
 
@@ -77,6 +78,7 @@ game_slide={
 3d_physics/layer_1="Player"
 2d_physics/layer_2="Obstacle"
 3d_physics/layer_2="Obstacle"
+3d_physics/layer_3="Collectibles"
 
 [rendering]
 
