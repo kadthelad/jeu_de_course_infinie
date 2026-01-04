@@ -51,8 +51,7 @@ func _ready() -> void:
 	current_line_position = middle_line_position
 	
 	# Signal connections
-	GameManager._game_started.connect(_on_game_started)
-	GameManager._game_ended.connect(_on_game_ended)
+	GameManager._game_state_changed.connect(_on_game_state_changed)
 
 ## This replaces the is_on_floor() method.
 ## In this game, the player does not walk nor move at all except for jumping.
@@ -90,11 +89,12 @@ func _physics_process(delta: float) -> void:
 	character_body_3d.move_and_slide()
 
 # Other conections
-func _on_game_started() -> void:
-	process_mode = Node.PROCESS_MODE_INHERIT
-
-func _on_game_ended() -> void:
-	call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED) # Deferred to remove an error when game over
+func _on_game_state_changed() -> void:
+	match GameManager.game_state:
+		GameManager.GAME_STATES.STARTED: # Game started
+			process_mode = Node.PROCESS_MODE_INHERIT
+		GameManager.GAME_STATES.ENDED: # Game ended
+			call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED) # Deferred to remove an error when game over
 
 # Player Input Component
 func _on_player_input_component_move_upper_line() -> void:

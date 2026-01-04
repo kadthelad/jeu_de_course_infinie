@@ -1,17 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://db24mnjjcyhxp"]
+[gd_scene load_steps=3 format=3 uid="uid://db24mnjjcyhxp"]
 
 [ext_resource type="Script" uid="uid://cpq3p7yrikoe5" path="res://UI/game_ui.gd" id="1_mp46i"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gijn"]
-bg_color = Color(0.23031491, 0.23031494, 0.23031485, 1)
-border_width_left = 15
-border_width_right = 60
-border_color = Color(0.22670749, 0.22670752, 0.22670731, 0)
-border_blend = true
-corner_radius_top_right = 255
-
-[sub_resource type="Theme" id="Theme_mp46i"]
-Label/styles/normal = SubResource("StyleBoxFlat_3gijn")
+[ext_resource type="Theme" uid="uid://b1cnvavqifdr5" path="res://UI/game_ui.tres" id="2_kfjql"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_mp46i")
@@ -23,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_mp46i")
+theme = ExtResource("2_kfjql")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -57,12 +47,12 @@ size_flags_horizontal = 3
 [node name="CoinLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Coins: 0"
+text = "game_coins"
 
 [node name="SpeedLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Speed: 0"
+text = "game_speed"
 
 [node name="Info1" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer"]
 layout_mode = 2

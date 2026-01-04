@@ -14,8 +14,7 @@ func _ready() -> void:
 		return
 	
 	# Setup GameManager
-	GameManager._game_ended.connect(_on_game_ended)
-	GameManager._game_started.connect(_on_game_started)
+	GameManager._game_state_changed.connect(_on_game_state_changed)
 
 func _on_obstacle_spawn_timer_timeout() -> void:
 	if player.lines_array == null:
@@ -24,13 +23,19 @@ func _on_obstacle_spawn_timer_timeout() -> void:
 	add_child(instanciated_obstacle)
 	instanciated_obstacle.global_position += Vector3(16, -1, 0)
 
-func _on_game_ended() -> void:
-	%GameSpeedUpTimer.stop()
-	%ObstacleSpawnTimer.stop()
-
-func _on_game_started() -> void:
-	%GameSpeedUpTimer.start()
-	%ObstacleSpawnTimer.start()
+func _on_game_state_changed() -> void:
+	match GameManager.game_state:
+		GameManager.GAME_STATES.STARTED: # Game started
+			%GameSpeedUpTimer.start()
+			%ObstacleSpawnTimer.start()
+		GameManager.GAME_STATES.ENDED: # Game ended
+			%GameSpeedUpTimer.stop()
+			%ObstacleSpawnTimer.stop()
+			GameManager.current_coins = 0
+		GameManager.GAME_STATES.PAUSED:
+			get_parent().process_mode = Node.PROCESS_MODE_DISABLED
+		GameManager.GAME_STATES.RUNNING:
+			get_parent().process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _on_game_speed_up_timer_timeout() -> void:

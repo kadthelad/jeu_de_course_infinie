@@ -1,26 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://bewfx0n2rwnlg"]
+[gd_scene load_steps=4 format=3 uid="uid://c8f7o0spi1i52"]
 
-[ext_resource type="Script" uid="uid://bjno70jou5vke" path="res://UI/main_menu.gd" id="1_p8ccj"]
-[ext_resource type="Theme" uid="uid://b1cnvavqifdr5" path="res://UI/game_ui.tres" id="2_tk8dj"]
+[ext_resource type="Script" uid="uid://dgd5pvgxj5oya" path="res://UI/pause_menu.gd" id="1_jfm1e"]
+[ext_resource type="Theme" uid="uid://b1cnvavqifdr5" path="res://UI/game_ui.tres" id="1_ltd3m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5yyqw"]
 font_size = 48
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8ccj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tk8dj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8nwk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cwpn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f40uw"]
-
-[node name="MainMenu" type="CanvasLayer"]
-script = ExtResource("1_p8ccj")
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_jfm1e")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,7 +42,7 @@ layout_mode = 2
 
 [node name="TITLE" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "UNTITLED_RUNNING_GAME"
+text = "pause_menu_title"
 label_settings = SubResource("LabelSettings_5yyqw")
 horizontal_alignment = 1
 
@@ -60,7 +58,15 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("2_tk8dj")
+theme = ExtResource("1_ltd3m")
+text = "game_total_coins"
+
+[node name="CoinsLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_ltd3m")
+text = "game_coins"
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -68,29 +74,29 @@ size_flags_horizontal = 3
 size_flags_vertical = 10
 alignment = 2
 
+[node name="ContinueButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "pause_menu_continue"
+
 [node name="SettingsButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
 layout_mode = 2
 text = "main_menu_settings"
+
+[node name="MainMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "pause_menu_back"
 
 [node name="QuitButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
 layout_mode = 2
 text = "main_menu_quit"
 
-[node name="CreditsButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
-layout_mode = 2
-text = "main_menu_credits"
-
-[node name="StartGameButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="EmptyControl" type="Control" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.5
-theme_override_styles/normal = SubResource("StyleBoxEmpty_p8ccj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_tk8dj")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_d8nwk")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_4cwpn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_f40uw")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

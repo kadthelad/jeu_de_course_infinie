@@ -5,21 +5,21 @@ const MAX_GAME_SPEED := 900
 const DEFAULT_GAME_SPEED := 500.0
 
 # Game
-signal _game_started
-signal _game_ended
+enum GAME_STATES {
+	STARTED,
+	ENDED,
+	PAUSED,
+	RUNNING,
+}
+signal _game_state_changed
 signal _game_speed_changed
 
 signal _update_game_ui
 
-var is_game_on := false: ## This tracks if the game is started or not
+var game_state := GAME_STATES.ENDED: ## This tracks the game's current state
 	set(value):
-		is_game_on = value
-		if value: # GAME STARTED
-			_game_started.emit()
-		else: # GAME ENDED
-			game_speed = DEFAULT_GAME_SPEED
-			coins_player_purse += current_coins # Add the coins to the player's purse
-			_game_ended.emit()
+		game_state = value
+		_game_state_changed.emit()
 
 var game_speed := DEFAULT_GAME_SPEED:
 	set(value):

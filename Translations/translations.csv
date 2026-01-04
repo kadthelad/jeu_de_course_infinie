@@ -1,0 +1,18 @@
+keys;en;fr
+settings_title;Settings;Paramètres
+settings_sound_title;Sounds;Sons
+settings_screen_title;Screen;Écran
+settings_sound_master;Master:;Général:
+settings_sound_music;Music:;Musique:
+settings_sound_effects;Effects:;Effets:
+settings_sound_voices;Voices:;Voix:
+settings_screen_fullscreen;Fullscreen:;Plein écran:
+game_total_coins;Total coins: ;Pièces total: 
+game_coins;Coins: ;Pièces: 
+game_speed;Speed: ;Vitesse: 
+main_menu_settings;Settings;Paramètres
+main_menu_quit;Quit;Quitter
+main_menu_credits;Credits;Crédits
+pause_menu_title;Paused Game;Jeu en Pause
+pause_menu_continue;Continue;Continuer
+pause_menu_back;Back to Main Menu;Retour au Menu Principal
