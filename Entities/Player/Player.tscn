@@ -77,7 +77,7 @@ radius = 0.75878906
 height = 2.4550781
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x44r4"]
-size = Vector3(2, 1.1, 0.675)
+size = Vector3(1.1, 1, 0.5)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hj1c0"]
 emission_shape_scale = Vector3(0.365, 0.245, 0.14)
@@ -124,6 +124,7 @@ libraries = {
 }
 
 [node name="Hitbox" type="Area3D" parent="CharacterBody3D"]
+unique_name_in_owner = true
 collision_mask = 2
 
 [node name="StandingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox"]
@@ -153,26 +154,14 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractBox"]
 shape = SubResource("CapsuleShape3D_t38ms")
 
-[node name="LineDetectors" type="Node3D" parent="CharacterBody3D"]
-visible = false
-
-[node name="TopShapeCast3D" type="ShapeCast3D" parent="CharacterBody3D/LineDetectors"]
+[node name="SideObstacleDetector" type="Area3D" parent="CharacterBody3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.46)
-shape = SubResource("BoxShape3D_x44r4")
-target_position = Vector3(1, 0, 0)
+collision_layer = 0
 collision_mask = 2
-collide_with_areas = true
-collide_with_bodies = false
 
-[node name="BottomShapeCast3D" type="ShapeCast3D" parent="CharacterBody3D/LineDetectors"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.46)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/SideObstacleDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 0)
 shape = SubResource("BoxShape3D_x44r4")
-target_position = Vector3(1, 0, 0)
-collision_mask = 2
-collide_with_areas = true
-collide_with_bodies = false
 
 [node name="RunningGPUParticles3D" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
@@ -195,3 +184,4 @@ size = Vector3(3.2578125, 1.0494385, 2)
 [connection signal="area_entered" from="CharacterBody3D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_entered"]
 [connection signal="area_exited" from="CharacterBody3D/GroundDetector" to="PlayerHitboxComponent" method="_on_ground_detector_area_exited"]
 [connection signal="area_entered" from="CharacterBody3D/InteractBox" to="PlayerHitboxComponent" method="_on_interact_box_area_entered"]
+[connection signal="area_entered" from="CharacterBody3D/SideObstacleDetector" to="PlayerHitboxComponent" method="_on_side_obstacle_detector_area_entered"]

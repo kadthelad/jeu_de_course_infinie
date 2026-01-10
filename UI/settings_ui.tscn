@@ -166,7 +166,7 @@ text = "settings_screen_fullscreen"
 [node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Back"
+text = "settings_menu_back"
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings/VBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_pressed"]

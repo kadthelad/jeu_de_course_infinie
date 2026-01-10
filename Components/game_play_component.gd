@@ -6,6 +6,10 @@ extends Node
 # Constants
 const GAME_SPEED_UP_RATE := 10
 
+# Onready
+@onready var obstacle_spawn_timer: Timer = %ObstacleSpawnTimer
+@onready var game_speed_up_timer: Timer = %GameSpeedUpTimer
+
 func _ready() -> void:
 	# Verifications
 	if player == null:
@@ -26,15 +30,16 @@ func _on_obstacle_spawn_timer_timeout() -> void:
 func _on_game_state_changed() -> void:
 	match GameManager.game_state:
 		GameManager.GAME_STATES.STARTED: # Game started
-			%GameSpeedUpTimer.start()
-			%ObstacleSpawnTimer.start()
+			game_speed_up_timer.start()
+			obstacle_spawn_timer.start()
+			get_parent().process_mode = Node.PROCESS_MODE_INHERIT
 		GameManager.GAME_STATES.ENDED: # Game ended
-			%GameSpeedUpTimer.stop()
-			%ObstacleSpawnTimer.stop()
+			game_speed_up_timer.stop()
+			obstacle_spawn_timer.stop()
 			GameManager.current_coins = 0
-		GameManager.GAME_STATES.PAUSED:
+		GameManager.GAME_STATES.PAUSED: # Game paused
 			get_parent().process_mode = Node.PROCESS_MODE_DISABLED
-		GameManager.GAME_STATES.RUNNING:
+		GameManager.GAME_STATES.RUNNING: # Game running
 			get_parent().process_mode = Node.PROCESS_MODE_INHERIT
 
 

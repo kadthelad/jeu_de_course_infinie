@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bewfx0n2rwnlg"]
+[gd_scene load_steps=10 format=3 uid="uid://bewfx0n2rwnlg"]
 
 [ext_resource type="Script" uid="uid://bjno70jou5vke" path="res://UI/main_menu.gd" id="1_p8ccj"]
 [ext_resource type="Theme" uid="uid://b1cnvavqifdr5" path="res://UI/game_ui.tres" id="2_tk8dj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5yyqw"]
 font_size = 48
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tk8dj"]
+size = Vector2(64, 64)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8ccj"]
 
@@ -62,6 +65,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_tk8dj")
 
+[node name="ShopButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_tk8dj")
+
 [node name="ButtonsContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -70,7 +77,7 @@ alignment = 2
 
 [node name="SettingsButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
 layout_mode = 2
-text = "main_menu_settings"
+text = "ui_settings"
 
 [node name="QuitButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
 layout_mode = 2
@@ -91,6 +98,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_4cwpn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f40uw")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

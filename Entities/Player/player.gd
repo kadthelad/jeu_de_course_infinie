@@ -16,19 +16,19 @@ const PLAYER_FEET_POSITION := Vector3(0, -1, 0)
 @onready var standing_collison_shape_3d: CollisionShape3D = %StandingCollisonShape3D
 @onready var sliding_collison_shape_3d: CollisionShape3D = %SlidingCollisonShape3D
 @onready var sliding_timer: Timer = %SlidingTimer
-@onready var top_shape_cast_3d: ShapeCast3D = %TopShapeCast3D
-@onready var bottom_shape_cast_3d: ShapeCast3D = %BottomShapeCast3D
+@onready var side_obstacle_detector: Area3D = %SideObstacleDetector
 @onready var running_gpu_particles_3d: GPUParticles3D = %RunningGPUParticles3D
 
 # Variables
 var lines_array: Array[Marker3D] = []
 var current_line_index: int
 var current_line_position: Vector3
+var moving_direction := true
 
 var is_on_ground := false
 var is_jumping := false
 var is_sliding := false
-
+var is_moving := false
 
 func _ready() -> void:
 	# Verifications

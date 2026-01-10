@@ -7,12 +7,19 @@ settings_sound_music;Music:;Musique:
 settings_sound_effects;Effects:;Effets:
 settings_sound_voices;Voices:;Voix:
 settings_screen_fullscreen;Fullscreen:;Plein écran:
-game_total_coins;Total coins: ;Pièces total: 
-game_coins;Coins: ;Pièces: 
-game_speed;Speed: ;Vitesse: 
-main_menu_settings;Settings;Paramètres
+;;
+game_total_coins;Total coins;Pièces total
+game_coins;Coins;Pièces
+game_speed;Speed;Vitesse
+ui_settings;Settings;Paramètres
 main_menu_quit;Quit;Quitter
 main_menu_credits;Credits;Crédits
 pause_menu_title;Paused Game;Jeu en Pause
 pause_menu_continue;Continue;Continuer
 pause_menu_back;Back to Main Menu;Retour au Menu Principal
+ui_back;Back;Retour
+;;
+shop_menu_title;Shop;Magasin
+shop_menu_buy_one;Buy 1;Acheter 1
+shop_menu_buy_five;Buy 5;Acheter 5
+shop_menu_buy_ten;Buy 10;Acheter 10

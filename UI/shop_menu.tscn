@@ -1,0 +1,147 @@
+[gd_scene load_steps=5 format=3 uid="uid://d8wj8oitbpr2"]
+
+[ext_resource type="Script" uid="uid://84cm2tpc8khf" path="res://UI/shop_menu.gd" id="1_rqwkp"]
+[ext_resource type="Theme" uid="uid://b1cnvavqifdr5" path="res://UI/game_ui.tres" id="1_tyiqa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqwkp"]
+bg_color = Color(0.41677514, 0.53332746, 0.6289407, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5yyqw"]
+font_size = 48
+
+[node name="ShopMenu" type="CanvasLayer"]
+script = ExtResource("1_rqwkp")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGMarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="Control/BGMarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rqwkp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="TITLE" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "shop_menu_title"
+label_settings = SubResource("LabelSettings_5yyqw")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PurseLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_tyiqa")
+
+[node name="PlayerInventoryItemList" type="ItemList" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+focus_mode = 2
+mouse_filter = 0
+alignment = 2
+
+[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "ui_back"
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShopItemList" type="ItemList" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+fixed_icon_size = Vector2i(32, 32)
+
+[node name="DescriptionTextEdit" type="TextEdit" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+wrap_mode = 1
+
+[node name="BuyButtonsContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="BuyOneButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/BuyButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "shop_menu_buy_one"
+
+[node name="BuyFiveButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/BuyButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "shop_menu_buy_five"
+
+[node name="BuyTenButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/BuyButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "shop_menu_buy_ten"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="item_selected" from="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/HBoxContainer/ShopItemList" to="." method="_on_shop_item_list_item_selected"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/BuyButtonsContainer/BuyOneButton" to="." method="_on_buy_one_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/BuyButtonsContainer/BuyFiveButton" to="." method="_on_buy_five_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer3/BuyButtonsContainer/BuyTenButton" to="." method="_on_buy_ten_button_pressed"]

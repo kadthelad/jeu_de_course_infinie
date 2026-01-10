@@ -12,11 +12,9 @@ const GAME_SCENE := preload("res://Maps/game.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	load_main_menu()
-	
 	# Tell every node that the game is not on
-	GameManager.game_state = GameManager.GAME_STATES.ENDED
 	GameManager._game_state_changed.connect(_on_game_state_changed)
+	GameManager.game_state = GameManager.GAME_STATES.ENDED
 
 func load_main_menu() -> void:
 	# Load the Main Menu UI
@@ -35,7 +33,6 @@ func _on_game_state_changed() -> void:
 	if GameManager.game_state == GameManager.GAME_STATES.STARTED:
 		var game_ui_instance := GAME_UI.instantiate()
 		add_child(game_ui_instance)
-		GameManager.game_state = GameManager.GAME_STATES.RUNNING
 	
 	# End game
 	elif GameManager.game_state == GameManager.GAME_STATES.ENDED:

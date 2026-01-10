@@ -9,15 +9,17 @@ func move_line(direction_up:=true) -> void:
 	if player.ground == null:
 		return
 	var direction := 1 if direction_up else -1
-	var cast = player.top_shape_cast_3d if direction_up else player.bottom_shape_cast_3d
+	player.moving_direction = direction_up
 	
-	# Attempt to change lines and do if possible
-	if cast.is_colliding():
-		return
+	# Change line
 	player.current_line_index = clampi(player.current_line_index-direction, 0, player.lines_array.size()-1)
-	
 	player.current_line_position = player.lines_array[player.current_line_index].global_position
 	
 	# Move the player to the new line
-	var tween = get_tree().create_tween()
-	tween.tween_property(player, "global_position", player.current_line_position, 0.1)
+	player.is_moving = true
+	var move_tween = get_tree().create_tween()
+	move_tween.tween_property(player, "global_position", player.current_line_position, 0.1)
+	
+	await move_tween.finished
+	player.is_moving = false
+	move_tween.kill()

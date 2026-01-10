@@ -10,5 +10,5 @@ func _ready() -> void:
 
 
 func update_ui() -> void:
-	coin_label.text = tr("game_coins") + str(GameManager.current_coins)
-	speed_label.text = tr("game_speed") + str(int(GameManager.game_speed))
+	coin_label.text = "%s: %s" % [tr("game_coins"), str(GameManager.current_coins)]
+	speed_label.text = "%s: %s" % [tr("game_speed"), str(int(GameManager.game_speed))]

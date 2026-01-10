@@ -40,7 +40,12 @@ var current_coins := 0:
 		current_coins = value
 		_update_game_ui.emit()
 
-var coins_player_purse := 0
+var coins_player_purse := 0:
+	set(value):
+		coins_player_purse = value
+		_update_game_ui.emit()
+
+var player_inventory: Dictionary[GameItem, int] = {}
 
 # Script
 func _ready() -> void:
