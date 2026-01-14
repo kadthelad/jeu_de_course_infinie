@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwou3bige3764"
-path.s3tc="res://.godot/imported/Character1_idle.png-c4cc3c7e38c1ec33c0e3d0e0dad9919b.s3tc.ctex"
+uid="uid://dcexjt3sa8f6"
+path.s3tc="res://.godot/imported/character_ninja_run.png-14967720364367ae5d58e5742f4cb07d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/CharacterSheets/Character1/Character1_idle.png"
-dest_files=["res://.godot/imported/Character1_idle.png-c4cc3c7e38c1ec33c0e3d0e0dad9919b.s3tc.ctex"]
+source_file="res://Textures/CharacterSheets/Character_Ninja/character_ninja_run.png"
+dest_files=["res://.godot/imported/character_ninja_run.png-14967720364367ae5d58e5742f4cb07d.s3tc.ctex"]
 
 [params]
 

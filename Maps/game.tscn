@@ -10,8 +10,9 @@ size = Vector2(2.185, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_6et8r"]
 size = Vector2(25, 6)
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_6et8r")
+player = NodePath("Player")
 
 [node name="GamePlayComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_y2ywj")]
 player = NodePath("../Player")
@@ -21,8 +22,8 @@ transform = Transform3D(18.05, 0, 0, 0, 18.05, 0, 0, 0, 18.05, 4, 0, -4.4636965)
 mesh = SubResource("QuadMesh_1ldu1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.95371693, 0.3007058, 0, -0.3007058, 0.95371693, 4.5, 3, 6.5)
-fov = 60.0
+transform = Transform3D(1, 0, 0, 0, 0.95371693, 0.3007058, 0, -0.3007058, 0.95371693, 4.328769, 3.341649, 7.9074593)
+fov = 45.0
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4, -1, 0)

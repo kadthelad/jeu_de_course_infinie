@@ -54,9 +54,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "game_speed"
 
-[node name="Info1" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer"]
+[node name="EquippedItems" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
 
 [node name="Info2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/GameInfoContainer"]
 layout_mode = 2

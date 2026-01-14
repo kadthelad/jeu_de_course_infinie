@@ -5,23 +5,19 @@ extends Node
 @onready var coins: Node3D = %Coins ## Contains all of the coins
 
 @onready var game_speed := GameManager.game_speed
-@onready var parent := get_parent() ## The obstacle node
 
 var visible_on_screen_notifier := VisibleOnScreenNotifier3D.new()
 
 func _ready() -> void:
 	# Add the obstacle deletion logic
 	visible_on_screen_notifier.screen_entered.connect(_on_screen_entered)
-	
-	# Spawn the obstacles and coins on the lines, if possible
-	spawn()
-	parent.add_child.call_deferred(visible_on_screen_notifier)
+	add_child.call_deferred(visible_on_screen_notifier)
 	GameManager._game_speed_changed.connect(_on_game_speed_changed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	parent.position += (game_speed / 100 * delta) * Vector3.LEFT
+	self.position += (game_speed / 100 * delta) * Vector3.LEFT
 
 func _on_game_speed_changed(new_speed) -> void:
 	game_speed = new_speed
@@ -36,19 +32,10 @@ func _on_screen_exited() -> void:
 ## [br]
 ## The obstacle will be deleted if it can't spawn!
 ## This also handles the coins spawning
-func spawn() -> void:
+func spawn(game_play_component: GamePlayComponent) -> void:
 	var lines_used := 1
 	if obstacles != null: # this variable is only valid for large obstacles
 		lines_used = obstacles.get_child_count()
-	
-	# Add the lines detection logic
-	# [NOTE] The obstacle's parent should be the game_play_component Node
-	# if it is the game_play_component Node, it SHOULD have a player variable.
-	var game_play_component := parent.get_parent()
-	if game_play_component == null:
-		PrintUtils.print_err("game_play_component is not found on obstacle " + parent.name + "!")
-		destroy()
-		return
 	
 	# We get the lines that the player registered
 	var lines_array: Array[Marker3D] = game_play_component.player.lines_array
@@ -88,7 +75,7 @@ func spawn() -> void:
 					coin.queue_free()
 			# Else, keep all of the coins
 	else:
-		parent.global_position.y = lines_array[i].position.y
+		self.global_position.y = lines_array[i].position.z
 
 func destroy() -> void:
-	parent.queue_free()
+	queue_free()

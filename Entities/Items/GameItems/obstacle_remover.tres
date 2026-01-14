@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=5 format=3 uid="uid://dmonlldg2xktw"]
+
+[ext_resource type="Script" uid="uid://bfop5vd6c645e" path="res://Entities/Items/ItemEffects/obstacle_remover_effect.gd" id="1_8hchr"]
+[ext_resource type="Script" uid="uid://b52iahi6b51bq" path="res://Entities/Items/GameItem.gd" id="1_836e6"]
+[ext_resource type="Texture2D" uid="uid://c2soc1w5k2e0f" path="res://Textures/GameItemIcons/1.png" id="1_ew5bh"]
+
+[sub_resource type="Resource" id="Resource_qgtox"]
+script = ExtResource("1_8hchr")
+metadata/_custom_type_script = "uid://bfop5vd6c645e"
+
+[resource]
+script = ExtResource("1_836e6")
+ID = 1
+i_name = "Obstacle Remover"
+description = "Removes all obstacles ahead instantly."
+price = 50
+icon = ExtResource("1_ew5bh")
+effect = SubResource("Resource_qgtox")
+metadata/_custom_type_script = "uid://b52iahi6b51bq"

@@ -35,17 +35,21 @@ var obstacles_array: Array[PackedScene] = []
 var obstacles_ready := false ## So you can't start a game without having all the obstacles loaded in already
 
 # Player
-var current_coins := 0:
+var player: Player = null
+
+var current_coins := 0: ## The amount of coins the player has in-game
 	set(value):
 		current_coins = value
 		_update_game_ui.emit()
 
-var coins_player_purse := 0:
+var coins_player_purse := 0: ## The amount of coins the player has in total
 	set(value):
 		coins_player_purse = value
 		_update_game_ui.emit()
 
 var player_inventory: Dictionary[GameItem, int] = {}
+
+var player_hotbar: Array[GameItem] = [null, null, null]
 
 # Script
 func _ready() -> void:

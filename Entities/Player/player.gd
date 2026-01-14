@@ -11,11 +11,14 @@ const PLAYER_FEET_POSITION := Vector3(0, -1, 0)
 
 # Onready
 @onready var player_movement_component: Node = $PlayerMovementComponent
+@onready var player_input_component: PlayerInputComponent = $PlayerInputComponent
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var character_body_3d: CharacterBody3D = $CharacterBody3D
 @onready var standing_collison_shape_3d: CollisionShape3D = %StandingCollisonShape3D
 @onready var sliding_collison_shape_3d: CollisionShape3D = %SlidingCollisonShape3D
 @onready var sliding_timer: Timer = %SlidingTimer
+@onready var effect_timer: Timer = %EffectTimer
 @onready var side_obstacle_detector: Area3D = %SideObstacleDetector
 @onready var running_gpu_particles_3d: GPUParticles3D = %RunningGPUParticles3D
 
@@ -29,6 +32,9 @@ var is_on_ground := false
 var is_jumping := false
 var is_sliding := false
 var is_moving := false
+
+# Bonuses
+var coin_income_multiplier := 1.0
 
 func _ready() -> void:
 	# Verifications
@@ -52,6 +58,8 @@ func _ready() -> void:
 	
 	# Signal connections
 	GameManager._game_state_changed.connect(_on_game_state_changed)
+	
+	animation_player.play("run")
 
 ## This replaces the is_on_floor() method.
 ## In this game, the player does not walk nor move at all except for jumping.

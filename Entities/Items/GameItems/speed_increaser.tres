@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=5 format=3 uid="uid://cc4awlw1qwcsx"]
+
+[ext_resource type="Script" uid="uid://bfxqr1ge0duwg" path="res://Entities/Items/ItemEffects/speed_increaser_effect.gd" id="1_h0t7k"]
+[ext_resource type="Script" uid="uid://b52iahi6b51bq" path="res://Entities/Items/GameItem.gd" id="1_m05i6"]
+[ext_resource type="Texture2D" uid="uid://dg8koiolxlyyg" path="res://Textures/GameItemIcons/3.png" id="1_r3g16"]
+
+[sub_resource type="Resource" id="Resource_4p1m1"]
+script = ExtResource("1_h0t7k")
+metadata/_custom_type_script = "uid://bfxqr1ge0duwg"
+
+[resource]
+script = ExtResource("1_m05i6")
+ID = 3
+i_name = "Speed Increaser"
+description = "Increases your speed for 5 seconds."
+price = 20
+icon = ExtResource("1_r3g16")
+effect = SubResource("Resource_4p1m1")
+metadata/_custom_type_script = "uid://b52iahi6b51bq"

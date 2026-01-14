@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dmgavua0ix2yr" path="res://Entities/Collectibles/coin.tscn" id="4_06la6"]
 
 [node name="LargeObstacle1" type="Node3D"]
-
-[node name="ObstacleComponent" type="Node" parent="."]
 script = ExtResource("1_33xqe")
 
 [node name="Obstacles" type="Node3D" parent="."]

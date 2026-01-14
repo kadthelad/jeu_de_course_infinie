@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=5 format=3 uid="uid://ds61nwoc4n11b"]
+
+[ext_resource type="Script" uid="uid://dhmhbol2sdvsw" path="res://Entities/Items/ItemEffects/coin_doubler_effect.gd" id="1_b88l3"]
+[ext_resource type="Texture2D" uid="uid://w71ytgjhl3kn" path="res://Textures/GameItemIcons/2.png" id="1_svccc"]
+[ext_resource type="Script" uid="uid://b52iahi6b51bq" path="res://Entities/Items/GameItem.gd" id="1_tmgew"]
+
+[sub_resource type="Resource" id="Resource_c5edp"]
+script = ExtResource("1_b88l3")
+metadata/_custom_type_script = "uid://dhmhbol2sdvsw"
+
+[resource]
+script = ExtResource("1_tmgew")
+ID = 2
+i_name = "Coin Doubler"
+description = "Doubles the coins the player takes."
+price = 75
+icon = ExtResource("1_svccc")
+effect = SubResource("Resource_c5edp")
+metadata/_custom_type_script = "uid://b52iahi6b51bq"

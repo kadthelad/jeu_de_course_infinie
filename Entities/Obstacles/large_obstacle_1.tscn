@@ -1,13 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://f8pf54njlogk"]
 
-[ext_resource type="PackedScene" uid="uid://da28udguq2q2l" path="res://Components/obstacle_component.tscn" id="1_hrvhg"]
+[ext_resource type="Script" uid="uid://ddly4cx2n2irv" path="res://Components/obstacle_component.gd" id="1_aqec6"]
 [ext_resource type="PackedScene" uid="uid://cre42jvcxga56" path="res://Entities/Obstacles/Prefabs/barrier.tscn" id="2_aqec6"]
 [ext_resource type="PackedScene" uid="uid://b0ygg174lqg3q" path="res://Entities/Obstacles/Prefabs/crate.tscn" id="3_dbnxj"]
 [ext_resource type="PackedScene" uid="uid://dmgavua0ix2yr" path="res://Entities/Collectibles/coin.tscn" id="4_aqec6"]
 
 [node name="LargeObstacle1" type="Node3D"]
-
-[node name="ObstacleComponent" parent="." instance=ExtResource("1_hrvhg")]
+script = ExtResource("1_aqec6")
 
 [node name="Obstacles" type="Node3D" parent="."]
 unique_name_in_owner = true

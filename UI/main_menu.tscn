@@ -65,7 +65,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_tk8dj")
 
-[node name="ShopButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShopButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_tk8dj")
+
+[node name="InventoryButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_tk8dj")
 
@@ -98,7 +105,8 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_4cwpn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f40uw")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

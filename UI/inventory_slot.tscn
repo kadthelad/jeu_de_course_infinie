@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://g3udnylktdyx"]
+
+[ext_resource type="Script" uid="uid://b7ncrxl2mq68p" path="res://UI/inventory_slot.gd" id="1_hmrqk"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8u14g"]
+size = Vector2(32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2oifk"]
+bg_color = Color(0.16, 0.16, 0.16, 0.827451)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0rig"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dbpsm"]
+font_color = Color(0.6541594, 0.8861527, 0.99999994, 0.6)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmrqk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phof1"]
+bg_color = Color(0.41981316, 0.4198131, 0.41981322, 0.56078434)
+
+[node name="InventorySlot" type="Panel"]
+custom_minimum_size = Vector2(46, 46)
+script = ExtResource("1_hmrqk")
+
+[node name="ImageTextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.6627451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_8u14g")
+stretch_mode = 3
+
+[node name="NumberLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_2oifk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h0rig")
+text = "1"
+horizontal_alignment = 2
+
+[node name="QuantityLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 10.0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_2oifk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h0rig")
+text = "0"
+label_settings = SubResource("LabelSettings_dbpsm")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_hmrqk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_phof1")
+step = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="PlayerEffectTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="replacing_by" from="PlayerEffectTimer" to="." method="_on_player_effect_timer_replacing_by"]
+[connection signal="timeout" from="PlayerEffectTimer" to="." method="_on_player_effect_timer_timeout"]

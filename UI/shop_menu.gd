@@ -2,7 +2,7 @@ class_name ShopMenu
 extends CanvasLayer
 
 # Constants
-const ITEMS_PATH := "res://Entities/GameItems/"
+const ITEMS_PATH := "res://Entities/Items/GameItems/"
 
 # Onready
 @onready var purse_label: Label = %PurseLabel
@@ -11,6 +11,7 @@ const ITEMS_PATH := "res://Entities/GameItems/"
 @onready var buy_one_button: Button = %BuyOneButton
 @onready var buy_five_button: Button = %BuyFiveButton
 @onready var buy_ten_button: Button = %BuyTenButton
+@onready var player_inventory_item_list: ItemList = %PlayerInventoryItemList
 
 # Variables
 var items_array: Array[GameItem] = []
@@ -25,14 +26,18 @@ func _ready() -> void:
 
 func update_ui() -> void:
 	purse_label.text = "%s: %s" % [tr("game_total_coins"), str(GameManager.coins_player_purse)]
+	
+	# Player's inventory
+	player_inventory_item_list.clear()
+	for item: GameItem in GameManager.player_inventory:
+		player_inventory_item_list.add_item("%s [%s]" % [item.i_name, GameManager.player_inventory[item]])
 
-static func load_item_list(items_array: Array) -> void:
+static func load_item_list(items_array_to_add: Array) -> void:
 	# Add existing items in items_array
 	var dir_access := DirAccess.open(ITEMS_PATH)
 	if dir_access:
 		for file in dir_access.get_files():
-			items_array.append(ResourceLoader.load(ITEMS_PATH + file))
-		
+			items_array_to_add.append(ResourceLoader.load(ITEMS_PATH + file))
 
 func show_data() -> void:
 	# Load the items for the shop:
@@ -55,6 +60,7 @@ func buy_item(quantity: int) -> void:
 		
 		# Save changes
 		DataUtils.save_player_data()
+		update_ui()
 
 static func item_id_is_equal(item: GameItem, item_id: int) -> bool:
 	if item.ID == item_id:

@@ -7,3 +7,4 @@ extends Resource
 @export_multiline var description := ""
 @export var price := 0
 @export var icon := Texture2D.new()
+@export var effect : ItemEffect

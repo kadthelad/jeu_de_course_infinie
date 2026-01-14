@@ -24,3 +24,7 @@ func _on_quit_button_pressed() -> void:
 func _on_shop_button_pressed() -> void:
 	var shop_ui_instance := SceneUtils.SHOP_UI_SCENE.instantiate()
 	main.add_child(shop_ui_instance)
+
+func _on_inventory_button_pressed() -> void:
+	var inventory_ui_instance := SceneUtils.INVENTORY_UI_SCENE.instantiate()
+	main.add_child(inventory_ui_instance)

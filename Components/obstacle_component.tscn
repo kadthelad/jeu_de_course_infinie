@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://da28udguq2q2l"]
-
-[ext_resource type="Script" uid="uid://ddly4cx2n2irv" path="res://Components/obstacle_component.gd" id="1_crdac"]
-
-[node name="ObstacleComponent" type="Node"]
-script = ExtResource("1_crdac")

@@ -24,7 +24,7 @@ func _on_ground_detector_area_exited(area: Area3D) -> void:
 func _on_interact_box_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Collectibles"):
 		if area.is_in_group("Coin"):
-			GameManager.current_coins += 1
+			GameManager.current_coins += int(1 * player.coin_income_multiplier)
 		area.queue_free()
 
 

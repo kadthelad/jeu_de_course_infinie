@@ -1,0 +1,121 @@
+[gd_scene load_steps=4 format=3 uid="uid://if5g5udd1l08"]
+
+[ext_resource type="Script" uid="uid://bbmiwudp7jl3p" path="res://UI/inventory_ui.gd" id="1_4hlgy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xirri"]
+bg_color = Color(0.24480002, 0.34, 0.26701334, 0.7254902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6l0t"]
+font_size = 28
+
+[node name="InventoryUI" type="CanvasLayer"]
+script = ExtResource("1_4hlgy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainerBG" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Panel" type="Panel" parent="Control/MarginContainerBG"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xirri")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="TITLE" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "inventory_title"
+label_settings = SubResource("LabelSettings_l6l0t")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerInventoryLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ui_inventory"
+horizontal_alignment = 1
+
+[node name="PlayerInventoryItemList" type="ItemList" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "ui_back"
+
+[node name="InventoryEquipContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slot1Button" type="Button" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/InventoryEquipContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "inventory_equip"
+
+[node name="Slot2Button" type="Button" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/InventoryEquipContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "inventory_equip"
+
+[node name="Slot3Button" type="Button" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/InventoryEquipContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "inventory_equip"
+
+[node name="EmptyControl" type="Control" parent="Control/MarginContainer/VBoxContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="item_selected" from="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/VBoxContainer/PlayerInventoryItemList" to="." method="_on_player_inventory_item_list_item_selected"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/InventoryEquipContainer/Slot1Button" to="." method="_on_slot_1_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/InventoryEquipContainer/Slot2Button" to="." method="_on_slot_2_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Control/HBoxContainer/InventoryEquipContainer/Slot3Button" to="." method="_on_slot_3_button_pressed"]
