@@ -11,6 +11,8 @@ signal slide
 signal use_item
 
 func _input(event: InputEvent) -> void:
+	if GameManager.game_state != GameManager.GAME_STATES.STARTED:
+		return
 	# == Game inputs ==
 	# Movement inputs
 	if event.is_action_pressed("game_up"):

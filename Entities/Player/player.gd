@@ -60,6 +60,8 @@ func _ready() -> void:
 	GameManager._game_state_changed.connect(_on_game_state_changed)
 	
 	animation_player.play("run")
+	
+	tree_entered.emit()
 
 ## This replaces the is_on_floor() method.
 ## In this game, the player does not walk nor move at all except for jumping.

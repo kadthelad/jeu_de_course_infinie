@@ -220,6 +220,7 @@ one_shot = true
 
 [node name="EffectTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true
 
 [connection signal="jump" from="PlayerInputComponent" to="." method="_on_player_input_component_jump"]
 [connection signal="move_lower_line" from="PlayerInputComponent" to="." method="_on_player_input_component_move_lower_line"]

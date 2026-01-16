@@ -23,7 +23,7 @@ func _ready() -> void:
 	GameManager._game_state_changed.connect(_on_game_state_changed)
 	
 	# Connect the player's hotbar inputs
-	await player.child_entered_tree
+	await player.tree_entered
 	player.player_input_component.use_item.connect(use_item)
 
 func _on_obstacle_spawn_timer_timeout() -> void:
@@ -55,4 +55,6 @@ func _on_game_speed_up_timer_timeout() -> void:
 	GameManager.game_speed += GAME_SPEED_UP_RATE
 
 func use_item(hotbar_nb) -> void:
-	GameManager.player_hotbar[hotbar_nb].effect.use(player, self)
+	if player.effect_timer.is_stopped():
+		if GameManager.player_hotbar[hotbar_nb] != null:
+			GameManager.player_hotbar[hotbar_nb].effect.use(player, self)
