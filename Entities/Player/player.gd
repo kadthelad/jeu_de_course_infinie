@@ -13,8 +13,8 @@ const PLAYER_FEET_POSITION := Vector3(0, -1, 0)
 @onready var player_movement_component: Node = $PlayerMovementComponent
 @onready var player_input_component: PlayerInputComponent = $PlayerInputComponent
 
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var character_body_3d: CharacterBody3D = $CharacterBody3D
+@onready var animation_player: AnimationPlayer = character_body_3d.find_child("CharacterAnimationPlayer")
 @onready var standing_collison_shape_3d: CollisionShape3D = %StandingCollisonShape3D
 @onready var sliding_collison_shape_3d: CollisionShape3D = %SlidingCollisonShape3D
 @onready var sliding_timer: Timer = %SlidingTimer
@@ -32,6 +32,10 @@ var is_on_ground := false
 var is_jumping := false
 var is_sliding := false
 var is_moving := false
+
+# Animations
+var run_anim := "run"
+var jump_anim := "jump"
 
 # Bonuses
 var coin_income_multiplier := 1.0
@@ -59,7 +63,12 @@ func _ready() -> void:
 	# Signal connections
 	GameManager._game_state_changed.connect(_on_game_state_changed)
 	
-	animation_player.play("run")
+	# Find the player's character and setup the appropriate animations
+	if !animation_player.has_animation_library(GameManager.player_character):
+		GameManager.player_character = "ninja" # Set player character to default character, ninja
+	run_anim = GameManager.player_character+"/run"
+	jump_anim = GameManager.player_character+"/jump"
+	animation_player.play(run_anim)
 	
 	tree_entered.emit()
 
@@ -89,11 +98,15 @@ func _physics_process(delta: float) -> void:
 		character_body_3d.velocity += character_body_3d.get_gravity() * delta * WEIGHT
 		running_gpu_particles_3d.emitting = false
 	else:
+		if animation_player.current_animation != run_anim:
+			animation_player.play(run_anim)
 		character_body_3d.velocity = Vector3.ZERO
 		running_gpu_particles_3d.emitting = true
 	
 	# Handle jump.
 	if is_jumping and is_on_line():
+		if animation_player.current_animation != jump_anim:
+			animation_player.play(jump_anim)
 		character_body_3d.velocity.y = JUMP_VELOCITY
 	is_jumping = false
 	character_body_3d.move_and_slide()

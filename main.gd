@@ -37,5 +37,5 @@ func _on_game_state_changed() -> void:
 		for child in get_children(): # Clean the scene
 			child.queue_free()
 		
-		load_main_menu() # Go back to the main menu
 		DataUtils.save_player_data()
+		load_main_menu() # Go back to the main menu

@@ -9,7 +9,6 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Obstacles"):
 		GameManager.game_speed = GameManager.DEFAULT_GAME_SPEED
 		GameManager.game_state = GameManager.GAME_STATES.ENDED
-		print("Game Over!")
 
 # Detect ground (step on obstacles)
 func _on_ground_detector_area_entered(area: Area3D) -> void:

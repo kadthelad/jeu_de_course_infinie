@@ -1,0 +1,514 @@
+[gd_scene format=3 uid="uid://b75sgjdy4l46u"]
+
+[ext_resource type="Shader" uid="uid://degnd5hmi0cnj" path="res://Shaders/SpriteSheetAnimation.gdshader" id="1_4lf8f"]
+[ext_resource type="Texture2D" uid="uid://bm8dh6qmsthnk" path="res://Textures/CharacterSheets/Character_Ninja/character_ninja_selection_v2.png" id="2_6piy5"]
+[ext_resource type="Texture2D" uid="uid://dkfa4ofcmk424" path="res://Textures/CharacterSheets/Character_Ninja/character_ninja_jump_v2.png" id="3_7auqw"]
+[ext_resource type="Texture2D" uid="uid://dcexjt3sa8f6" path="res://Textures/CharacterSheets/Character_Ninja/character_ninja_run.png" id="4_emgnx"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_x44r4"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x44r4"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 0
+
+[sub_resource type="Animation" id="Animation_061yh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_x44r4")]
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_061yh"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("3_7auqw")
+shader_parameter/columns = 4
+shader_parameter/rows = 1
+shader_parameter/frame = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gallu"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("3_7auqw")
+shader_parameter/columns = 4
+shader_parameter/rows = 1
+shader_parameter/frame = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hl213"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("3_7auqw")
+shader_parameter/columns = 4
+shader_parameter/rows = 1
+shader_parameter/frame = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e34i1"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("3_7auqw")
+shader_parameter/columns = 4
+shader_parameter/rows = 1
+shader_parameter/frame = 3
+
+[sub_resource type="Animation" id="Animation_vcmon"]
+resource_name = "jump"
+length = 0.6666667
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_061yh"), SubResource("ShaderMaterial_gallu"), SubResource("ShaderMaterial_hl213"), SubResource("ShaderMaterial_e34i1")]
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t38ms"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("4_emgnx")
+shader_parameter/columns = 7
+shader_parameter/rows = 1
+shader_parameter/frame = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hj1c0"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("4_emgnx")
+shader_parameter/columns = 7
+shader_parameter/rows = 1
+shader_parameter/frame = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_761t5"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("4_emgnx")
+shader_parameter/columns = 7
+shader_parameter/rows = 1
+shader_parameter/frame = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hacra"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("4_emgnx")
+shader_parameter/columns = 7
+shader_parameter/rows = 1
+shader_parameter/frame = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jynvv"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("4_emgnx")
+shader_parameter/columns = 7
+shader_parameter/rows = 1
+shader_parameter/frame = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmeus"]
+render_priority = 0
+shader = ExtResource("1_4lf8f")
+shader_parameter/albedo_texture = ExtResource("4_emgnx")
+shader_parameter/columns = 7
+shader_parameter/rows = 1
+shader_parameter/frame = 6
+
+[sub_resource type="Animation" id="Animation_5m37j"]
+resource_name = "run"
+length = 1.0000083
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_t38ms"), SubResource("ShaderMaterial_hj1c0"), SubResource("ShaderMaterial_761t5"), SubResource("ShaderMaterial_hacra"), SubResource("ShaderMaterial_jynvv"), SubResource("ShaderMaterial_lmeus")]
+}
+
+[sub_resource type="Shader" id="Shader_x44r4"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uw7o4"]
+render_priority = 0
+shader = SubResource("Shader_x44r4")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 0
+
+[sub_resource type="Shader" id="Shader_gallu"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_samso"]
+render_priority = 0
+shader = SubResource("Shader_gallu")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 1
+
+[sub_resource type="Shader" id="Shader_hl213"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5m37j"]
+render_priority = 0
+shader = SubResource("Shader_hl213")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 2
+
+[sub_resource type="Shader" id="Shader_e34i1"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcmon"]
+render_priority = 0
+shader = SubResource("Shader_e34i1")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 3
+
+[sub_resource type="Shader" id="Shader_h6pxy"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l80rc"]
+render_priority = 0
+shader = SubResource("Shader_h6pxy")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 4
+
+[sub_resource type="Shader" id="Shader_l2mqv"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgqku"]
+render_priority = 0
+shader = SubResource("Shader_l2mqv")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 5
+
+[sub_resource type="Shader" id="Shader_80tt4"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tepoh"]
+render_priority = 0
+shader = SubResource("Shader_80tt4")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 6
+
+[sub_resource type="Shader" id="Shader_h03de"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo_texture : source_color, filter_nearest_mipmap;
+uniform int columns = 1;
+uniform int rows = 1;
+uniform int frame = 0;
+
+void fragment() {
+	// UV Animation Logic
+	vec2 frame_size = vec2(1.0 / float(columns), 1.0 / float(rows));
+	vec2 frame_uv = vec2(
+		float(frame % columns) * frame_size.x,
+		float(frame / columns) * frame_size.y
+	);
+	
+	vec2 final_uv = frame_uv + (UV * frame_size);
+	vec4 tex = texture(albedo_texture, final_uv);
+	
+	ALBEDO = tex.rgb;
+	ALPHA = tex.a;
+	
+	// Alpha Scissor
+	if (ALPHA < 0.1) discard;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ewrch"]
+render_priority = 0
+shader = SubResource("Shader_h03de")
+shader_parameter/albedo_texture = ExtResource("2_6piy5")
+shader_parameter/columns = 8
+shader_parameter/rows = 1
+shader_parameter/frame = 7
+
+[sub_resource type="Animation" id="Animation_761t5"]
+resource_name = "selection"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_uw7o4"), SubResource("ShaderMaterial_samso"), SubResource("ShaderMaterial_5m37j"), SubResource("ShaderMaterial_vcmon"), SubResource("ShaderMaterial_l80rc"), SubResource("ShaderMaterial_mgqku"), SubResource("ShaderMaterial_tepoh"), SubResource("ShaderMaterial_ewrch")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e34i1"]
+_data = {
+&"RESET": SubResource("Animation_061yh"),
+&"jump": SubResource("Animation_vcmon"),
+&"run": SubResource("Animation_5m37j"),
+&"selection": SubResource("Animation_761t5")
+}
+
+[sub_resource type="Animation" id="Animation_hj1c0"]
+resource_name = "jump"
+length = 0.6666667
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_061yh"), SubResource("ShaderMaterial_gallu"), SubResource("ShaderMaterial_hl213"), SubResource("ShaderMaterial_e34i1")]
+}
+
+[sub_resource type="Animation" id="Animation_x44r4"]
+resource_name = "run"
+length = 1.0000083
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_t38ms"), SubResource("ShaderMaterial_hj1c0"), SubResource("ShaderMaterial_761t5"), SubResource("ShaderMaterial_hacra"), SubResource("ShaderMaterial_jynvv"), SubResource("ShaderMaterial_lmeus")]
+}
+
+[sub_resource type="Animation" id="Animation_hacra"]
+resource_name = "selection"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_uw7o4"), SubResource("ShaderMaterial_samso"), SubResource("ShaderMaterial_5m37j"), SubResource("ShaderMaterial_vcmon"), SubResource("ShaderMaterial_l80rc"), SubResource("ShaderMaterial_mgqku"), SubResource("ShaderMaterial_tepoh"), SubResource("ShaderMaterial_ewrch")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_761t5"]
+_data = {
+&"jump": SubResource("Animation_hj1c0"),
+&"run": SubResource("Animation_x44r4"),
+&"selection": SubResource("Animation_hacra")
+}
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=729162201]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1132184122]
+mesh = SubResource("QuadMesh_x44r4")
+surface_material_override/0 = SubResource("ShaderMaterial_x44r4")
+
+[node name="CharacterAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1252247730]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_e34i1")
+libraries/ninja = SubResource("AnimationLibrary_761t5")

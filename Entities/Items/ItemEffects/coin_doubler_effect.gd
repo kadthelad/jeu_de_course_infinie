@@ -8,7 +8,8 @@ func _init() -> void:
 func use(player: Player, game_play_component: GamePlayComponent) -> void:
 	player.effect_timer.wait_time = effect_duration
 	player.effect_timer.start()
-	player.effect_timer.timeout.connect(_on_effect_out.bind(player))
+	if !player.effect_timer.timeout.is_connected(_on_effect_out):
+		player.effect_timer.timeout.connect(_on_effect_out.bind(player))
 	
 	player.coin_income_multiplier = 2.0
 

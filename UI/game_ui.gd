@@ -39,7 +39,7 @@ func update_ui_one_shot() -> void:
 func update_hotbar_progress(hotbar_nb) -> void:
 	if equipped_items.get_children().size() > 0:
 		for inventory_slot: InventorySlot in equipped_items.get_children():
-			if inventory_slot.get_meta("hotbar_number") == hotbar_nb:
+			if inventory_slot.get_meta("hotbar_number") == hotbar_nb and inventory_slot.player_effect_timer.is_stopped():
 				inventory_slot.player_effect_timer.wait_time = inventory_slot.get_meta("item_effect_duration")
 				inventory_slot.player_effect_timer.start()
 				return

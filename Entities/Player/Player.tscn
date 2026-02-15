@@ -1,109 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://bat1e3mr8hu7d"]
+[gd_scene format=3 uid="uid://bat1e3mr8hu7d"]
 
 [ext_resource type="Script" uid="uid://cofud3kmib42k" path="res://Entities/Player/player.gd" id="1_e5kic"]
 [ext_resource type="Script" uid="uid://cux7vux7624gr" path="res://Components/PlayerComponents/player_input_component.gd" id="2_1des2"]
 [ext_resource type="Script" uid="uid://c8gt6x7os5w62" path="res://Components/PlayerComponents/player_hitbox_component.gd" id="3_an6q6"]
 [ext_resource type="Script" uid="uid://w8bmhqdtds1s" path="res://Components/PlayerComponents/player_movement_component.gd" id="4_an6q6"]
-[ext_resource type="Texture2D" uid="uid://dcexjt3sa8f6" path="res://Textures/CharacterSheets/Character_Ninja/character_ninja_run.png" id="6_hj1c0"]
-[ext_resource type="Shader" uid="uid://degnd5hmi0cnj" path="res://Shaders/SpriteSheetAnimation.gdshader" id="7_hj1c0"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_x44r4"]
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x44r4"]
-render_priority = 0
-shader = ExtResource("7_hj1c0")
-shader_parameter/albedo_texture = ExtResource("6_hj1c0")
-shader_parameter/columns = 7
-shader_parameter/rows = 1
-shader_parameter/frame = 0
-
-[sub_resource type="Animation" id="Animation_061yh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("ShaderMaterial_x44r4")]
-}
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t38ms"]
-render_priority = 0
-shader = ExtResource("7_hj1c0")
-shader_parameter/albedo_texture = ExtResource("6_hj1c0")
-shader_parameter/columns = 7
-shader_parameter/rows = 1
-shader_parameter/frame = 1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hj1c0"]
-render_priority = 0
-shader = ExtResource("7_hj1c0")
-shader_parameter/albedo_texture = ExtResource("6_hj1c0")
-shader_parameter/columns = 7
-shader_parameter/rows = 1
-shader_parameter/frame = 2
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_761t5"]
-render_priority = 0
-shader = ExtResource("7_hj1c0")
-shader_parameter/albedo_texture = ExtResource("6_hj1c0")
-shader_parameter/columns = 7
-shader_parameter/rows = 1
-shader_parameter/frame = 3
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hacra"]
-render_priority = 0
-shader = ExtResource("7_hj1c0")
-shader_parameter/albedo_texture = ExtResource("6_hj1c0")
-shader_parameter/columns = 7
-shader_parameter/rows = 1
-shader_parameter/frame = 4
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jynvv"]
-render_priority = 0
-shader = ExtResource("7_hj1c0")
-shader_parameter/albedo_texture = ExtResource("6_hj1c0")
-shader_parameter/columns = 7
-shader_parameter/rows = 1
-shader_parameter/frame = 5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmeus"]
-render_priority = 0
-shader = ExtResource("7_hj1c0")
-shader_parameter/albedo_texture = ExtResource("6_hj1c0")
-shader_parameter/columns = 7
-shader_parameter/rows = 1
-shader_parameter/frame = 6
-
-[sub_resource type="Animation" id="Animation_5m37j"]
-resource_name = "run"
-length = 1.0000083
-loop_mode = 1
-step = 0.083333336
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("ShaderMaterial_t38ms"), SubResource("ShaderMaterial_hj1c0"), SubResource("ShaderMaterial_761t5"), SubResource("ShaderMaterial_hacra"), SubResource("ShaderMaterial_jynvv"), SubResource("ShaderMaterial_lmeus")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_e34i1"]
-_data = {
-&"RESET": SubResource("Animation_061yh"),
-&"run": SubResource("Animation_5m37j")
-}
+[ext_resource type="PackedScene" uid="uid://b75sgjdy4l46u" path="res://Entities/Player/character_body_3d.tscn" id="5_an6q6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_an6q6"]
 size = Vector3(0.12084961, 1.272583, 0.1)
@@ -137,71 +38,61 @@ collision_bounce = 0.5
 
 [sub_resource type="QuadMesh" id="QuadMesh_761t5"]
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" unique_id=1588076349]
 script = ExtResource("1_e5kic")
 
-[node name="PlayerInputComponent" type="Node" parent="."]
+[node name="PlayerInputComponent" type="Node" parent="." unique_id=722601928]
 script = ExtResource("2_1des2")
 
-[node name="PlayerHitboxComponent" type="Node" parent="."]
+[node name="PlayerHitboxComponent" type="Node" parent="." unique_id=188245499]
 script = ExtResource("3_an6q6")
 
-[node name="PlayerMovementComponent" type="Node" parent="."]
+[node name="PlayerMovementComponent" type="Node" parent="." unique_id=959482494]
 script = ExtResource("4_an6q6")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" parent="." unique_id=729162201 instance=ExtResource("5_an6q6")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-mesh = SubResource("QuadMesh_x44r4")
-surface_material_override/0 = SubResource("ShaderMaterial_x44r4")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_e34i1")
-}
-
-[node name="Hitbox" type="Area3D" parent="CharacterBody3D"]
+[node name="Hitbox" type="Area3D" parent="CharacterBody3D" unique_id=169781432]
 unique_name_in_owner = true
 collision_mask = 2
 
-[node name="StandingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox"]
+[node name="StandingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox" unique_id=710265840]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41418588, 0.08390869, 0)
 shape = SubResource("BoxShape3D_an6q6")
 debug_color = Color(0.65823203, 0.27419496, 0.30283663, 0.41960785)
 
-[node name="SlidingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox"]
+[node name="SlidingCollisonShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hitbox" unique_id=298125205]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72871685, -0.76918787, 0)
 shape = SubResource("BoxShape3D_t38ms")
 disabled = true
 debug_color = Color(0.65823203, 0.27419496, 0.30283663, 0.41960785)
 
-[node name="GroundDetector" type="Area3D" parent="CharacterBody3D"]
+[node name="GroundDetector" type="Area3D" parent="CharacterBody3D" unique_id=852091216]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/GroundDetector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/GroundDetector" unique_id=1069514179]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2888184e-05, -1.0061765, 0)
 shape = SubResource("BoxShape3D_hj1c0")
 
-[node name="InteractBox" type="Area3D" parent="CharacterBody3D"]
+[node name="InteractBox" type="Area3D" parent="CharacterBody3D" unique_id=297974636]
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractBox" unique_id=1116488686]
 shape = SubResource("CapsuleShape3D_t38ms")
 
-[node name="SideObstacleDetector" type="Area3D" parent="CharacterBody3D"]
+[node name="SideObstacleDetector" type="Area3D" parent="CharacterBody3D" unique_id=648607739]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/SideObstacleDetector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/SideObstacleDetector" unique_id=422976455]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 0)
 shape = SubResource("BoxShape3D_x44r4")
 
-[node name="RunningGPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="RunningGPUParticles3D" type="GPUParticles3D" parent="." unique_id=418825431]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 emitting = false
@@ -209,16 +100,16 @@ trail_lifetime = 2.36
 process_material = SubResource("ParticleProcessMaterial_hj1c0")
 draw_pass_1 = SubResource("QuadMesh_761t5")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="RunningGPUParticles3D"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="RunningGPUParticles3D" unique_id=2044176327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.62890625, -0.61690104, 0)
 size = Vector3(3.2578125, 1.0494385, 2)
 
-[node name="SlidingTimer" type="Timer" parent="."]
+[node name="SlidingTimer" type="Timer" parent="." unique_id=2063412441]
 unique_name_in_owner = true
 wait_time = 1.5
 one_shot = true
 
-[node name="EffectTimer" type="Timer" parent="."]
+[node name="EffectTimer" type="Timer" parent="." unique_id=1022215877]
 unique_name_in_owner = true
 one_shot = true
 

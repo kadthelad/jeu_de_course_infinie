@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://drco6w771a670"]
+[gd_scene format=3 uid="uid://drco6w771a670"]
 
 [ext_resource type="Script" uid="uid://6njx46mx2x1a" path="res://UI/settings_ui.gd" id="1_xirri"]
 
@@ -8,10 +8,10 @@ bg_color = Color(0.24480002, 0.34, 0.26701334, 0.69803923)
 [sub_resource type="LabelSettings" id="LabelSettings_bb7ir"]
 font_size = 28
 
-[node name="SettingsUI" type="CanvasLayer"]
+[node name="SettingsUI" type="CanvasLayer" unique_id=995126977]
 script = ExtResource("1_xirri")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1983892622]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainerBG" type="MarginContainer" parent="Control"]
+[node name="MarginContainerBG" type="MarginContainer" parent="Control" unique_id=669714774]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,11 +31,11 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Panel" type="Panel" parent="Control/MarginContainerBG"]
+[node name="Panel" type="Panel" parent="Control/MarginContainerBG" unique_id=192362743]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xirri")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1303234346]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,126 +47,126 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=504878003]
 layout_mode = 2
 
-[node name="TITLE" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+[node name="TITLE" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=1069048339]
 layout_mode = 2
 text = "settings_title"
 label_settings = SubResource("LabelSettings_bb7ir")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=1757912917]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=736867067]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1474759510]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="SoundSettings" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+[node name="SoundSettings" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=1989468123]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings" unique_id=1106718092]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer" unique_id=1161656271]
 layout_mode = 2
 theme_override_constants/margin_bottom = 10
 
-[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/MarginContainer"]
+[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/MarginContainer" unique_id=1244716542]
 layout_mode = 2
 text = "settings_sound_title"
 horizontal_alignment = 1
 
-[node name="Master" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer"]
+[node name="Master" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer" unique_id=1698959027]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Master"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Master" unique_id=1298879695]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "settings_sound_master"
 
-[node name="MasterSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Master"]
+[node name="MasterSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Master" unique_id=675675238]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Music" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer"]
+[node name="Music" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer" unique_id=1313786933]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Music"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Music" unique_id=591735370]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "settings_sound_music"
 
-[node name="MusicSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Music"]
+[node name="MusicSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Music" unique_id=676983630]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Effects" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer"]
+[node name="Effects" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer" unique_id=820516333]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Effects"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Effects" unique_id=1636593696]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "settings_sound_effects"
 
-[node name="EffectsSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Effects"]
+[node name="EffectsSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Effects" unique_id=1909975612]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Voices" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer"]
+[node name="Voices" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer" unique_id=2010322057]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Voices"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Voices" unique_id=1166428691]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "settings_sound_voices"
 
-[node name="VoicesSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Voices"]
+[node name="VoicesSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/SoundSettings/VBoxContainer/Voices" unique_id=2082207856]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=636935532]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 
-[node name="ScreenSettings" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="ScreenSettings" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=206006330]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings" unique_id=929257739]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings/VBoxContainer"]
+[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings/VBoxContainer" unique_id=1914306015]
 layout_mode = 2
 text = "settings_screen_title"
 horizontal_alignment = 1
 
-[node name="FullscreenCheckButton" type="CheckButton" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings/VBoxContainer"]
+[node name="FullscreenCheckButton" type="CheckButton" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings/VBoxContainer" unique_id=1744007817]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "settings_screen_fullscreen"
 
-[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=33472299]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "settings_menu_back"
+text = "ui_back"
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/ScreenSettings/VBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_pressed"]

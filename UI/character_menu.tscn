@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://bt78whlup3su8"]
+
+[ext_resource type="Script" uid="uid://d4hdnjuqji8jn" path="res://UI/character_menu.gd" id="1_ov4yr"]
+[ext_resource type="PackedScene" uid="uid://drjtac5sro10v" path="res://Scenes/character_selector.tscn" id="2_ov4yr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4tg0"]
+bg_color = Color(0.38110465, 0.38157925, 0.42228112, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s4tg0"]
+font_size = 28
+
+[node name="CharacterMenu" type="CanvasLayer" unique_id=1835062628]
+script = ExtResource("1_ov4yr")
+
+[node name="Control" type="Control" parent="." unique_id=2121503673]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGMarginContainer" type="MarginContainer" parent="Control" unique_id=344278416]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BGPanel" type="Panel" parent="Control/BGMarginContainer" unique_id=1516746714]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s4tg0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1125583757]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=173265554]
+layout_mode = 2
+
+[node name="TITLE" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=1164152088]
+layout_mode = 2
+size_flags_vertical = 0
+text = "character_ui_title"
+label_settings = SubResource("LabelSettings_s4tg0")
+horizontal_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=1340845906]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/MarginContainer/VBoxContainer/SubViewportContainer" unique_id=1204510658]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1112, 497)
+render_target_update_mode = 4
+
+[node name="CharacterSelector" parent="Control/MarginContainer/VBoxContainer/SubViewportContainer/SubViewport" unique_id=1233889289 instance=ExtResource("2_ov4yr")]
+unique_name_in_owner = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=381155710]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=156203938]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "ui_back"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=889685134]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PreviousButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=1357130094]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "<"
+
+[node name="CharacterNameLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=962129175]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "CHARACTER_NAME"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=838849392]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = ">"
+
+[node name="SelectButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=880172735]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "ui_select"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

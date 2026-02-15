@@ -28,3 +28,7 @@ func _on_shop_button_pressed() -> void:
 func _on_inventory_button_pressed() -> void:
 	var inventory_ui_instance := SceneUtils.INVENTORY_UI_SCENE.instantiate()
 	main.add_child(inventory_ui_instance)
+
+func _on_character_button_pressed() -> void:
+	var character_ui_instance := SceneUtils.CHARACTER_UI_SCENE.instantiate()
+	main.add_child(character_ui_instance)

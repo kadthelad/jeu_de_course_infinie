@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="GameItem" load_steps=5 format=3 uid="uid://ds61nwoc4n11b"]
+[gd_resource type="Resource" script_class="GameItem" format=3 uid="uid://ds61nwoc4n11b"]
 
-[ext_resource type="Script" uid="uid://dhmhbol2sdvsw" path="res://Entities/Items/ItemEffects/coin_doubler_effect.gd" id="1_b88l3"]
+[ext_resource type="Script" uid="uid://dhmhbol2sdvsw" path="res://Scenes/Entities/Items/ItemEffects/coin_doubler_effect.gd" id="1_b88l3"]
 [ext_resource type="Texture2D" uid="uid://w71ytgjhl3kn" path="res://Textures/GameItemIcons/2.png" id="1_svccc"]
-[ext_resource type="Script" uid="uid://b52iahi6b51bq" path="res://Entities/Items/GameItem.gd" id="1_tmgew"]
+[ext_resource type="Script" uid="uid://b52iahi6b51bq" path="res://Scenes/Entities/Items/GameItem.gd" id="1_tmgew"]
 
 [sub_resource type="Resource" id="Resource_c5edp"]
 script = ExtResource("1_b88l3")

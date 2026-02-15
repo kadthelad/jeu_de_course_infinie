@@ -50,7 +50,7 @@ func set_slot_button(slot_number: int) -> void:
 	GameManager.player_hotbar[slot_number] = selected_item
 	
 	# Save changes
-	DataUtils.save_player_data()
+	DataUtils.save_player_data("hotbar")
 	update_ui()
 
 func _on_back_button_pressed() -> void:

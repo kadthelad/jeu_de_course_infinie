@@ -46,10 +46,13 @@ var coins_player_purse := 0: ## The amount of coins the player has in total
 	set(value):
 		coins_player_purse = value
 		_update_game_ui.emit()
+		DataUtils.save_player_data("coins")
 
 var player_inventory: Dictionary[GameItem, int] = {}
 
 var player_hotbar: Array[GameItem] = [null, null, null]
+
+var player_character: String = "ninja"
 
 # Script
 func _ready() -> void:

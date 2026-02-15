@@ -59,7 +59,7 @@ func buy_item(quantity: int) -> void:
 				GameManager.player_inventory[selected_item] = 1
 		
 		# Save changes
-		DataUtils.save_player_data()
+		DataUtils.save_player_data("inventory")
 		update_ui()
 
 static func item_id_is_equal(item: GameItem, item_id: int) -> bool:
