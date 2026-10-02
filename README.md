@@ -18,4 +18,4 @@ ATTENTION: C'est un projet non terminé, il y a très probablement de nombreux b
 - Dézipper l'archive
 - Lancer Godot
 - Dans l'explorateur de projets (dans Godot) => cliquer sur "importer" et trouvez le dossier du projet
-- Toujours dans l'exploratuer de projets => Sélectionner le projet ("untitled_running_game") => cliquer sur "éxecution"
+- Toujours dans l'explorateur de projets => Sélectionner le projet ("untitled_running_game") => cliquer sur "éxecution"
